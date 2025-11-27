@@ -33,25 +33,25 @@ const FilterBar = ({ selectedGender, onGenderChange, sortBy, onSortChange }: Fil
   };
 
   return (
-    <div className="flex items-center justify-between px-4 py-4 bg-background">
+    <div className="flex items-center justify-between px-4 py-6 bg-background border-y border-gold/20">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button 
             variant="default" 
-            className="bg-primary text-primary-foreground rounded-full px-6 py-5 font-semibold hover:bg-primary/90"
+            className="bg-gold text-black rounded-md px-6 py-5 font-bold hover:bg-gold-light uppercase tracking-wider"
           >
             <SlidersHorizontal className="mr-2 h-4 w-4" />
             {getGenderLabel()}
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="start" className="w-48">
-          <DropdownMenuItem onClick={() => onGenderChange("all")}>
+        <DropdownMenuContent align="start" className="w-48 bg-card border-gold/20">
+          <DropdownMenuItem onClick={() => onGenderChange("all")} className="text-foreground hover:bg-gold/10">
             All Products
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onGenderChange("men")}>
+          <DropdownMenuItem onClick={() => onGenderChange("men")} className="text-foreground hover:bg-gold/10">
             Men's Perfumes
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onGenderChange("women")}>
+          <DropdownMenuItem onClick={() => onGenderChange("women")} className="text-foreground hover:bg-gold/10">
             Women's Perfumes
           </DropdownMenuItem>
         </DropdownMenuContent>
@@ -61,23 +61,23 @@ const FilterBar = ({ selectedGender, onGenderChange, sortBy, onSortChange }: Fil
         <DropdownMenuTrigger asChild>
           <Button 
             variant="ghost" 
-            className="text-foreground font-semibold hover:bg-secondary"
+            className="text-gold font-semibold hover:bg-gold/10 border border-gold/20"
           >
             <ArrowUpDown className="mr-2 h-4 w-4" />
             {getSortLabel()}
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-48">
-          <DropdownMenuItem onClick={() => onSortChange("best-selling")}>
+        <DropdownMenuContent align="end" className="w-48 bg-card border-gold/20">
+          <DropdownMenuItem onClick={() => onSortChange("best-selling")} className="text-foreground hover:bg-gold/10">
             Best Selling
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onSortChange("price-low")}>
+          <DropdownMenuItem onClick={() => onSortChange("price-low")} className="text-foreground hover:bg-gold/10">
             Price: Low to High
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onSortChange("price-high")}>
+          <DropdownMenuItem onClick={() => onSortChange("price-high")} className="text-foreground hover:bg-gold/10">
             Price: High to Low
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onSortChange("name")}>
+          <DropdownMenuItem onClick={() => onSortChange("name")} className="text-foreground hover:bg-gold/10">
             Name (A-Z)
           </DropdownMenuItem>
         </DropdownMenuContent>
