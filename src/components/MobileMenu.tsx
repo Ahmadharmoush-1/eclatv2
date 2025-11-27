@@ -44,7 +44,7 @@ const MobileMenu = ({ open, onOpenChange }: MobileMenuProps) => {
             Making Luxury Affordable
           </p>
           <p className="text-xs text-muted-foreground">
-            © 2024 Niche's Perfumes
+            © 2024 Éclat Parfum Beirut
           </p>
         </div>
       </SheetContent>
