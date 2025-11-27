@@ -5,6 +5,7 @@ import { useCart } from "@/contexts/CartContext";
 import CartDrawer from "./CartDrawer";
 import MobileMenu from "./MobileMenu";
 import SearchDialog from "./SearchDialog";
+import logo from "@/assets/eclat-logo.png";
 
 const Header = () => {
   const { totalItems } = useCart();
@@ -25,9 +26,13 @@ const Header = () => {
             <Menu className="h-6 w-6" />
           </Button>
           
-          <h1 className="text-2xl font-bold tracking-tight">
-            Niche's Perfumes
-          </h1>
+          <div className="flex items-center">
+            <img 
+              src={logo} 
+              alt="Éclat Parfum Beirut" 
+              className="h-12 object-contain"
+            />
+          </div>
           
           <div className="flex items-center gap-2">
             <Button 

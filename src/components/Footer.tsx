@@ -40,7 +40,7 @@ const Footer = () => {
         </div>
         
         <p className="text-center text-muted-foreground text-sm">
-          © 2024 Niche's Perfumes. All rights reserved.
+          © 2024 Éclat Parfum Beirut. All rights reserved.
         </p>
       </div>
     </footer>
