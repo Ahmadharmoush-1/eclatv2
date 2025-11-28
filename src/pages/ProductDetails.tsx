@@ -1,27 +1,114 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Star, ShoppingBag, Clock, Waves } from "lucide-react";
+import { ArrowLeft, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { useCart } from "@/contexts/CartContext";
-import { products } from "@/data/products";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ReviewCard from "@/components/ReviewCard";
-import ProductCard from "@/components/ProductCard";
-import SizeSelector from "@/components/SizeSelector";
+import { ShopifyProduct, storefrontApiRequest } from "@/lib/shopify";
+import { useCartStore } from "@/stores/cartStore";
+import { ShopifyProductCard } from "@/components/ShopifyProductCard";
+
+const PRODUCT_BY_HANDLE_QUERY = `
+  query GetProductByHandle($handle: String!) {
+    product(handle: $handle) {
+      id
+      title
+      description
+      handle
+      tags
+      priceRange {
+        minVariantPrice {
+          amount
+          currencyCode
+        }
+      }
+      images(first: 5) {
+        edges {
+          node {
+            url
+            altText
+          }
+        }
+      }
+      variants(first: 10) {
+        edges {
+          node {
+            id
+            title
+            price {
+              amount
+              currencyCode
+            }
+            availableForSale
+            selectedOptions {
+              name
+              value
+            }
+          }
+        }
+      }
+      options {
+        name
+        values
+      }
+    }
+  }
+`;
 
 const ProductDetails = () => {
-  const { id } = useParams();
-  const { addItem } = useCart();
-  const product = products.find((p) => p.id === Number(id));
-  
-  const [selectedSize, setSelectedSize] = useState(product?.sizes[1] || product?.sizes[0]);
+  const { id: handle } = useParams();
+  const addItem = useCartStore(state => state.addItem);
+  const [product, setProduct] = useState<ShopifyProduct | null>(null);
+  const [selectedVariant, setSelectedVariant] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    const loadProduct = async () => {
+      if (!handle) return;
+      
+      try {
+        setIsLoading(true);
+        const data = await storefrontApiRequest(PRODUCT_BY_HANDLE_QUERY, { handle });
+        if (data?.data?.product) {
+          const productData = { node: data.data.product };
+          setProduct(productData);
+          setSelectedVariant(data.data.product.variants.edges[0]?.node);
+        }
+      } catch (error) {
+        console.error('Failed to load product:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadProduct();
     window.scrollTo(0, 0);
-  }, [id]);
+  }, [handle]);
+
+  const handleAddToCart = () => {
+    if (product && selectedVariant) {
+      addItem({
+        product,
+        variantId: selectedVariant.id,
+        variantTitle: selectedVariant.title,
+        price: selectedVariant.price,
+        quantity: 1,
+        selectedOptions: selectedVariant.selectedOptions,
+      });
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <div className="flex flex-col items-center justify-center min-h-[60vh] px-4">
+          <p className="text-muted-foreground">Loading product...</p>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   if (!product) {
     return (
@@ -30,7 +117,7 @@ const ProductDetails = () => {
         <div className="flex flex-col items-center justify-center min-h-[60vh] px-4">
           <h1 className="text-2xl font-bold text-foreground mb-4">Product Not Found</h1>
           <Link to="/">
-            <Button className="bg-accent hover:bg-accent/90">
+            <Button className="bg-gold hover:bg-gold/90">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Shop
             </Button>
@@ -41,16 +128,10 @@ const ProductDetails = () => {
     );
   }
 
-  const handleAddToCart = () => {
-    addItem({
-      id: product.id,
-      name: `${product.name} (${selectedSize?.ml}ml)`,
-      image: product.image,
-      price: selectedSize?.price || product.price,
-    });
-  };
-
-  const recommendedProducts = products.filter((p) => p.id !== product.id).slice(0, 2);
+  const { node } = product;
+  const price = parseFloat(node.priceRange.minVariantPrice.amount);
+  const currency = node.priceRange.minVariantPrice.currencyCode;
+  const mainImage = node.images.edges[0]?.node;
 
   return (
     <div className="min-h-screen bg-background">
@@ -58,7 +139,7 @@ const ProductDetails = () => {
 
       <main className="max-w-6xl mx-auto px-4 py-6">
         {/* Back Button */}
-        <Link to="/" className="inline-flex items-center text-muted-foreground hover:text-accent transition-colors mb-6">
+        <Link to="/" className="inline-flex items-center text-muted-foreground hover:text-gold transition-colors mb-6">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Shop
         </Link>
@@ -68,64 +149,85 @@ const ProductDetails = () => {
           {/* Image Gallery */}
           <div className="space-y-4">
             <div className="relative bg-white rounded-2xl overflow-hidden border border-border shadow-lg aspect-square">
-              <Badge className="absolute top-4 left-4 z-10 bg-save-badge text-accent-foreground font-bold px-3 py-1">
-                SAVE {product.discount}%
-              </Badge>
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-full object-contain p-8"
-              />
+              {mainImage ? (
+                <img
+                  src={mainImage.url}
+                  alt={mainImage.altText || node.title}
+                  className="w-full h-full object-contain p-8"
+                />
+              ) : (
+                <div className="w-full h-full bg-muted flex items-center justify-center">
+                  <span className="text-muted-foreground">No image</span>
+                </div>
+              )}
+            </div>
+            {/* Additional images */}
+            <div className="grid grid-cols-4 gap-2">
+              {node.images.edges.slice(1, 5).map((img, idx) => (
+                <div key={idx} className="aspect-square bg-white rounded-lg overflow-hidden border border-border">
+                  <img
+                    src={img.node.url}
+                    alt={img.node.altText || `${node.title} ${idx + 2}`}
+                    className="w-full h-full object-contain p-2"
+                  />
+                </div>
+              ))}
             </div>
           </div>
 
           {/* Product Info */}
           <div className="space-y-6">
             <div>
-              <p className="text-sm text-muted-foreground mb-2">{product.brand}</p>
-              <h1 className="text-3xl font-bold text-foreground mb-3">{product.name}</h1>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`h-5 w-5 ${
-                        i < Math.floor(product.rating)
-                          ? "fill-rating-star text-rating-star"
-                          : "text-muted"
-                      }`}
-                    />
+              <h1 className="text-3xl font-bold text-foreground mb-3">{node.title}</h1>
+              <p className="text-foreground leading-relaxed mb-6">{node.description}</p>
+              
+              {node.tags.length > 0 && (
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {node.tags.map((tag) => (
+                    <span 
+                      key={tag} 
+                      className="px-3 py-1 bg-gold/10 text-gold rounded-full text-sm border border-gold/20"
+                    >
+                      {tag}
+                    </span>
                   ))}
                 </div>
-                <span className="text-sm text-muted-foreground">
-                  ({product.reviews} reviews)
-                </span>
-              </div>
-              <p className="text-foreground leading-relaxed mb-6">{product.description}</p>
-              
-              <div className="bg-accent/10 rounded-xl p-4 border border-accent/20 mb-6">
-                <p className="text-sm font-semibold text-foreground">
-                  Inspired by: <span className="text-accent">{product.inspiredBy}</span>
-                </p>
-              </div>
+              )}
             </div>
 
             {/* Pricing */}
             <div className="bg-card rounded-xl p-6 border border-border">
               <div className="flex items-baseline gap-3 mb-4">
-                <span className="text-4xl font-bold text-price-sale">
-                  ${selectedSize?.price.toFixed(2)}
-                </span>
-                <span className="text-xl text-price-old line-through">
-                  ${selectedSize?.oldPrice.toFixed(2)}
+                <span className="text-4xl font-bold text-gold">
+                  {currency} {price.toFixed(2)}
                 </span>
               </div>
 
-              <SizeSelector
-                sizes={product.sizes}
-                selectedSize={selectedSize!}
-                onSizeChange={setSelectedSize}
-              />
+              {/* Variant selector */}
+              {node.variants.edges.length > 1 && (
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold">Select Option:</label>
+                  <div className="flex flex-wrap gap-2">
+                    {node.variants.edges.map(({ node: variant }) => (
+                      <button
+                        key={variant.id}
+                        onClick={() => setSelectedVariant(variant)}
+                        disabled={!variant.availableForSale}
+                        className={`px-4 py-2 rounded-lg border transition-colors ${
+                          selectedVariant?.id === variant.id
+                            ? 'bg-gold text-black border-gold'
+                            : variant.availableForSale
+                            ? 'border-border hover:border-gold'
+                            : 'border-border opacity-50 cursor-not-allowed'
+                        }`}
+                      >
+                        {variant.title}
+                        {!variant.availableForSale && ' (Out of stock)'}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Actions */}
@@ -133,130 +235,15 @@ const ProductDetails = () => {
               <Button
                 onClick={handleAddToCart}
                 size="lg"
-                className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold py-6 rounded-xl text-lg"
+                disabled={!selectedVariant?.availableForSale}
+                className="w-full bg-gold hover:bg-gold/90 text-black font-bold py-6 rounded-xl text-lg"
               >
                 <ShoppingBag className="mr-2 h-5 w-5" />
-                Add to Cart
+                {selectedVariant?.availableForSale ? 'Add to Cart' : 'Out of Stock'}
               </Button>
-            </div>
-
-            {/* Quick Info */}
-            <div className="grid grid-cols-2 gap-4 pt-4">
-              <div className="flex items-center gap-3 bg-secondary rounded-xl p-4">
-                <Clock className="h-5 w-5 text-accent flex-shrink-0" />
-                <div>
-                  <p className="text-xs text-muted-foreground">Longevity</p>
-                  <p className="font-semibold text-foreground">{product.longevity}</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 bg-secondary rounded-xl p-4">
-                <Waves className="h-5 w-5 text-accent flex-shrink-0" />
-                <div>
-                  <p className="text-xs text-muted-foreground">Sillage</p>
-                  <p className="font-semibold text-foreground">{product.sillage}</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
-
-        <Separator className="my-12" />
-
-        {/* Scent Notes */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-foreground mb-6">Scent Notes</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-gradient-to-br from-accent/10 to-accent/5 rounded-xl p-6 border border-accent/20">
-              <h3 className="font-bold text-foreground mb-3 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-accent"></span>
-                Top Notes
-              </h3>
-              <ul className="space-y-2">
-                {product.notes.top.map((note) => (
-                  <li key={note} className="text-foreground">• {note}</li>
-                ))}
-              </ul>
-            </div>
-            
-            <div className="bg-gradient-to-br from-accent/10 to-accent/5 rounded-xl p-6 border border-accent/20">
-              <h3 className="font-bold text-foreground mb-3 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-accent"></span>
-                Middle Notes
-              </h3>
-              <ul className="space-y-2">
-                {product.notes.middle.map((note) => (
-                  <li key={note} className="text-foreground">• {note}</li>
-                ))}
-              </ul>
-            </div>
-            
-            <div className="bg-gradient-to-br from-accent/10 to-accent/5 rounded-xl p-6 border border-accent/20">
-              <h3 className="font-bold text-foreground mb-3 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-accent"></span>
-                Base Notes
-              </h3>
-              <ul className="space-y-2">
-                {product.notes.base.map((note) => (
-                  <li key={note} className="text-foreground">• {note}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <Separator className="my-12" />
-
-        {/* Customer Reviews */}
-        <section className="mb-12">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-foreground">Customer Reviews</h2>
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`h-5 w-5 ${
-                      i < Math.floor(product.rating)
-                        ? "fill-rating-star text-rating-star"
-                        : "text-muted"
-                    }`}
-                  />
-                ))}
-              </div>
-              <span className="text-sm font-semibold text-foreground">
-                {product.rating} ({product.reviews} reviews)
-              </span>
-            </div>
-          </div>
-          
-          <div className="space-y-4">
-            {product.customerReviews.map((review) => (
-              <ReviewCard key={review.id} {...review} />
-            ))}
-          </div>
-        </section>
-
-        <Separator className="my-12" />
-
-        {/* You May Also Like */}
-        <section>
-          <h2 className="text-2xl font-bold text-foreground mb-6">You May Also Like</h2>
-          <div className="grid grid-cols-2 gap-4">
-            {recommendedProducts.map((rec) => (
-              <ProductCard
-                key={rec.id}
-                id={rec.id}
-                name={rec.name}
-                image={rec.image}
-                price={rec.price}
-                oldPrice={rec.oldPrice}
-                rating={rec.rating}
-                reviews={rec.reviews}
-                discount={rec.discount}
-              />
-            ))}
-          </div>
-        </section>
       </main>
 
       <Footer />
