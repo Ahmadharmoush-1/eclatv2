@@ -12,7 +12,7 @@ type SortOption = "best-selling" | "price-low" | "price-high" | "name";
 
 const Index = () => {
   const [searchParams] = useSearchParams();
-  const [selectedGender, setSelectedGender] = useState<"all" | "men" | "women">("all");
+  const [selectedTag, setSelectedTag] = useState<string>("all");
   const [sortBy, setSortBy] = useState<SortOption>("best-selling");
   const [searchQuery, setSearchQuery] = useState("");
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
@@ -20,9 +20,9 @@ const Index = () => {
 
   // Handle URL parameters
   useEffect(() => {
-    const genderParam = searchParams.get("gender");
-    if (genderParam === "men" || genderParam === "women") {
-      setSelectedGender(genderParam);
+    const tagParam = searchParams.get("tag");
+    if (tagParam) {
+      setSelectedTag(tagParam);
     }
     const searchParam = searchParams.get("search");
     if (searchParam) {
@@ -47,13 +47,19 @@ const Index = () => {
     loadProducts();
   }, []);
 
+  // Get all unique tags from products
+  const availableTags = Array.from(
+    new Set(products.flatMap(product => product.node.tags))
+  ).sort();
+
   // Filter and sort products
   const filteredProducts = products
     .filter((product) => {
       const matchesSearch = searchQuery === "" || 
         product.node.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         product.node.description.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesSearch;
+      const matchesTag = selectedTag === "all" || product.node.tags.includes(selectedTag);
+      return matchesSearch && matchesTag;
     })
     .sort((a, b) => {
       const priceA = parseFloat(a.node.priceRange.minVariantPrice.amount);
@@ -78,10 +84,11 @@ const Index = () => {
       <Hero />
       <RecommendedSection />
       <FilterBar 
-        selectedGender={selectedGender}
-        onGenderChange={setSelectedGender}
+        selectedTag={selectedTag}
+        onTagChange={setSelectedTag}
         sortBy={sortBy}
         onSortChange={setSortBy}
+        availableTags={availableTags}
       />
       
       <div id="products-section" className="px-4 pb-8">

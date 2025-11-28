@@ -8,13 +8,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 interface FilterBarProps {
-  selectedGender: "all" | "men" | "women";
-  onGenderChange: (gender: "all" | "men" | "women") => void;
+  selectedTag: string;
+  onTagChange: (tag: string) => void;
   sortBy: string;
   onSortChange: (sort: any) => void;
+  availableTags: string[];
 }
 
-const FilterBar = ({ selectedGender, onGenderChange, sortBy, onSortChange }: FilterBarProps) => {
+const FilterBar = ({ selectedTag, onTagChange, sortBy, onSortChange, availableTags }: FilterBarProps) => {
   const getSortLabel = () => {
     switch (sortBy) {
       case "price-low": return "Price: Low to High";
@@ -24,12 +25,8 @@ const FilterBar = ({ selectedGender, onGenderChange, sortBy, onSortChange }: Fil
     }
   };
 
-  const getGenderLabel = () => {
-    switch (selectedGender) {
-      case "men": return "Men's";
-      case "women": return "Women's";
-      default: return "All";
-    }
+  const getTagLabel = () => {
+    return selectedTag === "all" ? "All Products" : selectedTag;
   };
 
   return (
@@ -41,19 +38,22 @@ const FilterBar = ({ selectedGender, onGenderChange, sortBy, onSortChange }: Fil
             className="bg-gold text-black rounded-md px-6 py-5 font-bold hover:bg-gold-light uppercase tracking-wider"
           >
             <SlidersHorizontal className="mr-2 h-4 w-4" />
-            {getGenderLabel()}
+            {getTagLabel()}
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start" className="w-48 bg-card border-gold/20">
-          <DropdownMenuItem onClick={() => onGenderChange("all")} className="text-foreground hover:bg-gold/10">
+          <DropdownMenuItem onClick={() => onTagChange("all")} className="text-foreground hover:bg-gold/10">
             All Products
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onGenderChange("men")} className="text-foreground hover:bg-gold/10">
-            Men's Perfumes
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onGenderChange("women")} className="text-foreground hover:bg-gold/10">
-            Women's Perfumes
-          </DropdownMenuItem>
+          {availableTags.map((tag) => (
+            <DropdownMenuItem 
+              key={tag} 
+              onClick={() => onTagChange(tag)} 
+              className="text-foreground hover:bg-gold/10"
+            >
+              {tag}
+            </DropdownMenuItem>
+          ))}
         </DropdownMenuContent>
       </DropdownMenu>
       
