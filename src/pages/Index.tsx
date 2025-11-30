@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import BenefitsBar from "@/components/BenefitsBar";
 import FilterBar from "@/components/FilterBar";
 import RecommendedSection from "@/components/RecommendedSection";
 import PrivateCollectionSection from "@/components/PrivateCollectionSection";
@@ -74,8 +75,9 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Header />
       <Hero />
+      <BenefitsBar />
       <RecommendedSection />
-      <FilterBar 
+      <FilterBar
         selectedTag={selectedTag}
         onTagChange={setSelectedTag}
         availableTags={availableTags}
