@@ -149,34 +149,38 @@ const Index = () => {
         </div>
       </div>
 
-      <PrivateCollectionSection 
-        selectedTag={privateCollectionTag}
-        onTagChange={setPrivateCollectionTag}
-        availableTags={availableTags}
-      />
-      
-      <div className="px-4 pb-8">
-        <div className="grid grid-cols-2 gap-4 max-w-7xl mx-auto">
-          {isLoading ? (
-            <div className="col-span-2 text-center py-12">
-              <p className="text-muted-foreground">Loading private collection...</p>
+      {selectedTag === "all" && (
+        <>
+          <PrivateCollectionSection 
+            selectedTag={privateCollectionTag}
+            onTagChange={setPrivateCollectionTag}
+            availableTags={availableTags}
+          />
+          
+          <div className="px-4 pb-8">
+            <div className="grid grid-cols-2 gap-4 max-w-7xl mx-auto">
+              {isLoading ? (
+                <div className="col-span-2 text-center py-12">
+                  <p className="text-muted-foreground">Loading private collection...</p>
+                </div>
+              ) : privateCollectionProducts.length > 0 ? (
+                privateCollectionProducts.map((product) => (
+                  <ShopifyProductCard 
+                    key={product.node.id} 
+                    product={product}
+                  />
+                ))
+              ) : (
+                <div className="col-span-2 text-center py-12">
+                  <p className="text-muted-foreground text-lg mb-2">
+                    No products in private collection
+                  </p>
+                </div>
+              )}
             </div>
-          ) : privateCollectionProducts.length > 0 ? (
-            privateCollectionProducts.map((product) => (
-              <ShopifyProductCard 
-                key={product.node.id} 
-                product={product}
-              />
-            ))
-          ) : (
-            <div className="col-span-2 text-center py-12">
-              <p className="text-muted-foreground text-lg mb-2">
-                No products in private collection
-              </p>
-            </div>
-          )}
-        </div>
-      </div>
+          </div>
+        </>
+      )}
       
       <Footer />
     </div>
