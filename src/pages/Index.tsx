@@ -75,7 +75,11 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <OfferBanner />
-      <Header />
+      <Header 
+        selectedTag={selectedTag}
+        onTagChange={setSelectedTag}
+        availableTags={availableTags}
+      />
       <Hero />
       <BenefitsBar />
       <RecommendedSection />
