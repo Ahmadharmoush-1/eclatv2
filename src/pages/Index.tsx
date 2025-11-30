@@ -49,10 +49,12 @@ const Index = () => {
     loadProducts();
   }, []);
 
-  // Get all unique tags from products
+  // Get all unique tags from products, excluding certain tags
   const availableTags = Array.from(
     new Set(products.flatMap(product => product.node.tags))
-  ).sort();
+  )
+    .filter(tag => !['Exclusive', 'Luxury', 'Oud'].includes(tag))
+    .sort();
 
   // Filter and sort products for main section
   const filteredProducts = products
