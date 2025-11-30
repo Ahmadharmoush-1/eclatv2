@@ -26,9 +26,9 @@ const Hero = () => {
         <h2 className="text-5xl md:text-7xl font-luxury font-bold text-gold text-center mb-2 tracking-tight leading-tight animate-fade-in">
           Éclat Parfum
         </h2>
-        <p className="text-3xl md:text-4xl font-luxury text-gold-light text-center mb-6 tracking-widest animate-fade-in">
+        <h3 className="text-5xl md:text-7xl font-luxury font-bold text-gold text-center mb-6 tracking-tight leading-tight animate-fade-in">
           BEIRUT
-        </p>
+        </h3>
         <p className="text-gold-light text-xl md:text-2xl text-center mb-8 font-light tracking-wide animate-fade-in">
           Where Elegance Meets Affordability
         </p>
