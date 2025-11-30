@@ -1,4 +1,4 @@
-import { Home, ShoppingBag, Mail, HelpCircle, Lock, Filter } from "lucide-react";
+import { Home, Mail, HelpCircle, Filter } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
@@ -15,8 +15,6 @@ interface MobileMenuProps {
 const MobileMenu = ({ open, onOpenChange, selectedTag = "all", onTagChange, availableTags = [] }: MobileMenuProps) => {
   const mainMenuItems = [
     { icon: Home, label: "Home", path: "/" },
-    { icon: ShoppingBag, label: "All Products", action: () => onTagChange?.("all") },
-    { icon: Lock, label: "Private Collection", action: () => onTagChange?.("Private Collection") },
     { icon: HelpCircle, label: "FAQ", path: "/faq" },
     { icon: Mail, label: "Contact", path: "/contact" },
   ];
@@ -31,13 +29,6 @@ const MobileMenu = ({ open, onOpenChange, selectedTag = "all", onTagChange, avai
     }
   };
 
-  const handleMenuItemClick = (item: typeof mainMenuItems[0]) => {
-    if (item.action) {
-      item.action();
-    }
-    onOpenChange(false);
-  };
-
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent side="left" className="w-80 overflow-y-auto">
@@ -47,26 +38,15 @@ const MobileMenu = ({ open, onOpenChange, selectedTag = "all", onTagChange, avai
 
         <nav className="space-y-2">
           {mainMenuItems.map((item, index) => (
-            item.path ? (
-              <Link
-                key={index}
-                to={item.path}
-                onClick={() => onOpenChange(false)}
-                className="flex items-center gap-3 p-4 rounded-xl hover:bg-gold/10 transition-colors border border-gold/20"
-              >
-                <item.icon className="h-5 w-5 text-gold" />
-                <span className="font-semibold text-foreground">{item.label}</span>
-              </Link>
-            ) : (
-              <button
-                key={index}
-                onClick={() => handleMenuItemClick(item)}
-                className="w-full flex items-center gap-3 p-4 rounded-xl hover:bg-gold/10 transition-colors border border-gold/20"
-              >
-                <item.icon className="h-5 w-5 text-gold" />
-                <span className="font-semibold text-foreground">{item.label}</span>
-              </button>
-            )
+            <Link
+              key={index}
+              to={item.path}
+              onClick={() => onOpenChange(false)}
+              className="flex items-center gap-3 p-4 rounded-xl hover:bg-gold/10 transition-colors border border-gold/20"
+            >
+              <item.icon className="h-5 w-5 text-gold" />
+              <span className="font-semibold text-foreground">{item.label}</span>
+            </Link>
           ))}
         </nav>
 
