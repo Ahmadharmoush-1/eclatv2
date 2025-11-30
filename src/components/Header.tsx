@@ -6,7 +6,13 @@ import MobileMenu from "./MobileMenu";
 import SearchDialog from "./SearchDialog";
 import logo from "@/assets/eclat-logo.png";
 
-const Header = () => {
+interface HeaderProps {
+  selectedTag?: string;
+  onTagChange?: (tag: string) => void;
+  availableTags?: string[];
+}
+
+const Header = ({ selectedTag = "all", onTagChange, availableTags = [] }: HeaderProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
 
@@ -45,7 +51,13 @@ const Header = () => {
         </div>
       </header>
       
-      <MobileMenu open={menuOpen} onOpenChange={setMenuOpen} />
+      <MobileMenu 
+        open={menuOpen} 
+        onOpenChange={setMenuOpen}
+        selectedTag={selectedTag}
+        onTagChange={onTagChange}
+        availableTags={availableTags}
+      />
       <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
     </>
   );
