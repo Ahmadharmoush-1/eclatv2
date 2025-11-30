@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { SlidersHorizontal, ArrowUpDown } from "lucide-react";
+import { SlidersHorizontal } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,21 +10,10 @@ import {
 interface FilterBarProps {
   selectedTag: string;
   onTagChange: (tag: string) => void;
-  sortBy: string;
-  onSortChange: (sort: any) => void;
   availableTags: string[];
 }
 
-const FilterBar = ({ selectedTag, onTagChange, sortBy, onSortChange, availableTags }: FilterBarProps) => {
-  const getSortLabel = () => {
-    switch (sortBy) {
-      case "price-low": return "Price: Low to High";
-      case "price-high": return "Price: High to Low";
-      case "name": return "Name";
-      default: return "Best Selling";
-    }
-  };
-
+const FilterBar = ({ selectedTag, onTagChange, availableTags }: FilterBarProps) => {
   const getTagLabel = () => {
     return selectedTag === "all" ? "All Products" : selectedTag;
   };
@@ -54,32 +43,6 @@ const FilterBar = ({ selectedTag, onTagChange, sortBy, onSortChange, availableTa
               {tag}
             </DropdownMenuItem>
           ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
-      
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button 
-            variant="ghost" 
-            className="text-gold font-semibold hover:bg-gold/10 border border-gold/20"
-          >
-            <ArrowUpDown className="mr-2 h-4 w-4" />
-            {getSortLabel()}
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-48 bg-card border-gold/20">
-          <DropdownMenuItem onClick={() => onSortChange("best-selling")} className="text-foreground hover:bg-gold/10">
-            Best Selling
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onSortChange("price-low")} className="text-foreground hover:bg-gold/10">
-            Price: Low to High
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onSortChange("price-high")} className="text-foreground hover:bg-gold/10">
-            Price: High to Low
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onSortChange("name")} className="text-foreground hover:bg-gold/10">
-            Name (A-Z)
-          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
