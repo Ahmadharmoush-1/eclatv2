@@ -9,13 +9,10 @@ import { ShopifyProductCard } from "@/components/ShopifyProductCard";
 import Footer from "@/components/Footer";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
 
-type SortOption = "best-selling" | "price-low" | "price-high" | "name";
-
 const Index = () => {
   const [searchParams] = useSearchParams();
   const [selectedTag, setSelectedTag] = useState<string>("all");
   const [privateCollectionTag, setPrivateCollectionTag] = useState<string>("all");
-  const [sortBy, setSortBy] = useState<SortOption>("best-selling");
   const [searchQuery, setSearchQuery] = useState("");
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -56,7 +53,7 @@ const Index = () => {
     .filter(tag => !['Exclusive', 'Luxury', 'Oud'].includes(tag))
     .sort();
 
-  // Filter and sort products for main section
+  // Filter products for main section
   const filteredProducts = products
     .filter((product) => {
       const matchesSearch = searchQuery === "" || 
@@ -64,22 +61,6 @@ const Index = () => {
         product.node.description.toLowerCase().includes(searchQuery.toLowerCase());
       const matchesTag = selectedTag === "all" || product.node.tags.includes(selectedTag);
       return matchesSearch && matchesTag;
-    })
-    .sort((a, b) => {
-      const priceA = parseFloat(a.node.priceRange.minVariantPrice.amount);
-      const priceB = parseFloat(b.node.priceRange.minVariantPrice.amount);
-      
-      switch (sortBy) {
-        case "price-low":
-          return priceA - priceB;
-        case "price-high":
-          return priceB - priceA;
-        case "name":
-          return a.node.title.localeCompare(b.node.title);
-        case "best-selling":
-        default:
-          return 0;
-      }
     });
 
   // Filter products for private collection
@@ -87,22 +68,6 @@ const Index = () => {
     .filter((product) => {
       const matchesTag = privateCollectionTag === "all" || product.node.tags.includes(privateCollectionTag);
       return matchesTag;
-    })
-    .sort((a, b) => {
-      const priceA = parseFloat(a.node.priceRange.minVariantPrice.amount);
-      const priceB = parseFloat(b.node.priceRange.minVariantPrice.amount);
-      
-      switch (sortBy) {
-        case "price-low":
-          return priceA - priceB;
-        case "price-high":
-          return priceB - priceA;
-        case "name":
-          return a.node.title.localeCompare(b.node.title);
-        case "best-selling":
-        default:
-          return 0;
-      }
     });
 
   return (
@@ -113,8 +78,6 @@ const Index = () => {
       <FilterBar 
         selectedTag={selectedTag}
         onTagChange={setSelectedTag}
-        sortBy={sortBy}
-        onSortChange={setSortBy}
         availableTags={availableTags}
       />
       
