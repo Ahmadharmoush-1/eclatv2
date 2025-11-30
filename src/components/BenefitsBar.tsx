@@ -5,7 +5,8 @@ const BenefitsBar = () => {
     {
       icon: Gift,
       title: "Free Tester",
-      description: "With Every Order"
+      description: "With Every Order",
+      highlight: true
     },
     {
       icon: BadgeCheck,
@@ -20,7 +21,7 @@ const BenefitsBar = () => {
     {
       icon: Truck,
       title: "Fast Delivery",
-      description: "Express Shipping"
+      description: "Quick Shipping"
     }
   ];
 
@@ -33,13 +34,23 @@ const BenefitsBar = () => {
             return (
               <div 
                 key={index} 
-                className="flex flex-col items-center text-center gap-2 p-3 rounded-lg hover:bg-gold/5 transition-all"
+                className={`flex flex-col items-center text-center gap-2 p-3 rounded-lg transition-all ${
+                  benefit.highlight 
+                    ? 'bg-gold/20 border-2 border-gold animate-pulse shadow-lg shadow-gold/30' 
+                    : 'hover:bg-gold/5'
+                }`}
               >
-                <div className="bg-gold/20 p-3 rounded-full">
-                  <Icon className="h-6 w-6 text-gold" />
+                <div className={`p-3 rounded-full ${
+                  benefit.highlight ? 'bg-gold' : 'bg-gold/20'
+                }`}>
+                  <Icon className={`h-6 w-6 ${
+                    benefit.highlight ? 'text-black' : 'text-gold'
+                  }`} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-gold text-sm md:text-base uppercase tracking-wide">
+                  <h3 className={`font-bold text-sm md:text-base uppercase tracking-wide ${
+                    benefit.highlight ? 'text-gold animate-pulse' : 'text-gold'
+                  }`}>
                     {benefit.title}
                   </h3>
                   <p className="text-gold-light text-xs md:text-sm">

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import Header from "@/components/Header";
+import OfferBanner from "@/components/OfferBanner";
 import Hero from "@/components/Hero";
 import BenefitsBar from "@/components/BenefitsBar";
 import FilterBar from "@/components/FilterBar";
@@ -73,6 +74,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <OfferBanner />
       <Header />
       <Hero />
       <BenefitsBar />
