@@ -10,6 +10,7 @@ import PrivateCollectionSection from "@/components/PrivateCollectionSection";
 import { ShopifyProductCard } from "@/components/ShopifyProductCard";
 import Footer from "@/components/Footer";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 const Index = () => {
   const [searchParams] = useSearchParams();
@@ -156,6 +157,7 @@ const Index = () => {
       )}
       
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };
