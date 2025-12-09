@@ -16,7 +16,7 @@ const Footer = () => {
         
         <div className="flex justify-center gap-6 mb-8">
           <a 
-            href="https://instagram.com" 
+            href="https://www.instagram.com/eclat.beirut?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
             target="_blank"
             rel="noopener noreferrer"
             className="bg-secondary p-3 rounded-full hover:bg-gold/10 border border-gold/20 hover:border-gold transition-all hover:scale-110"
