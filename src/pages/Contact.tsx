@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Phone, MapPin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -70,24 +70,12 @@ const Contact = () => {
               <div className="space-y-4">
                 <div className="flex items-start gap-4">
                   <div className="bg-accent/10 p-3 rounded-full">
-                    <Mail className="h-6 w-6 text-accent" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">Email</h3>
-                    <a href="mailto:hello@eclatparfumbeirut.com" className="text-muted-foreground hover:text-accent transition-colors">
-                      hello@eclatparfumbeirut.com
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="bg-accent/10 p-3 rounded-full">
                     <Phone className="h-6 w-6 text-accent" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Phone</h3>
-                    <a href="tel:+15551234567" className="text-muted-foreground hover:text-accent transition-colors">
-                      +1 (555) 123-4567
+                    <a href="tel:+96178700373" className="text-muted-foreground hover:text-accent transition-colors">
+                      +961 78 700 373
                     </a>
                   </div>
                 </div>
@@ -99,9 +87,7 @@ const Contact = () => {
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Address</h3>
                     <p className="text-muted-foreground">
-                      123 Fragrance Avenue<br />
-                      New York, NY 10001<br />
-                      United States
+                      Beirut, Lebanon
                     </p>
                   </div>
                 </div>
