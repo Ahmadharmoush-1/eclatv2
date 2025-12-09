@@ -10,93 +10,93 @@ All colors MUST be HSL.
   :root {
     /* Black & Gold Luxury Theme */
     --background: 0 0% 7%;
-    --foreground: 40 70% 65%;
+    --foreground: 40 50% 55%;
 
     --card: 0 0% 10%;
-    --card-foreground: 40 70% 65%;
+    --card-foreground: 40 50% 55%;
 
     --popover: 0 0% 10%;
-    --popover-foreground: 40 70% 65%;
+    --popover-foreground: 40 50% 55%;
 
-    --primary: 38 80% 50%;
+    --primary: 38 60% 42%;
     --primary-foreground: 0 0% 5%;
 
     --secondary: 0 0% 15%;
-    --secondary-foreground: 40 70% 65%;
+    --secondary-foreground: 40 50% 55%;
 
     --muted: 0 0% 20%;
-    --muted-foreground: 38 30% 55%;
+    --muted-foreground: 38 25% 45%;
 
-    --accent: 38 80% 50%;
+    --accent: 38 60% 42%;
     --accent-foreground: 0 0% 5%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 38 50% 25%;
+    --border: 38 40% 22%;
     --input: 0 0% 15%;
-    --ring: 38 80% 50%;
+    --ring: 38 60% 42%;
 
     --radius: 0.5rem;
     
     /* Custom luxury colors - Rich Gold */
-    --gold: 38 80% 50%;
-    --gold-light: 40 70% 65%;
-    --gold-dark: 35 85% 35%;
+    --gold: 38 60% 42%;
+    --gold-light: 40 50% 55%;
+    --gold-dark: 35 65% 30%;
     --black-pure: 0 0% 0%;
     --black-light: 0 0% 12%;
     
-    --banner-bg: 38 80% 50%;
+    --banner-bg: 38 60% 42%;
     --banner-text: 0 0% 5%;
-    --save-badge: 38 80% 50%;
-    --price-sale: 38 80% 50%;
+    --save-badge: 38 60% 42%;
+    --price-sale: 38 60% 42%;
     --price-old: 0 0% 50%;
-    --rating-star: 38 80% 50%;
+    --rating-star: 38 60% 42%;
 
     --sidebar-background: 0 0% 5%;
-    --sidebar-foreground: 40 70% 65%;
-    --sidebar-primary: 38 80% 50%;
+    --sidebar-foreground: 40 50% 55%;
+    --sidebar-primary: 38 60% 42%;
     --sidebar-primary-foreground: 0 0% 5%;
     --sidebar-accent: 0 0% 15%;
-    --sidebar-accent-foreground: 40 70% 65%;
-    --sidebar-border: 38 50% 25%;
-    --sidebar-ring: 38 80% 50%;
+    --sidebar-accent-foreground: 40 50% 55%;
+    --sidebar-border: 38 40% 22%;
+    --sidebar-ring: 38 60% 42%;
   }
 
   .dark {
     --background: 0 0% 7%;
-    --foreground: 40 70% 65%;
+    --foreground: 40 50% 55%;
     --card: 0 0% 10%;
-    --card-foreground: 40 70% 65%;
+    --card-foreground: 40 50% 55%;
     --popover: 0 0% 10%;
-    --popover-foreground: 40 70% 65%;
-    --primary: 38 80% 50%;
+    --popover-foreground: 40 50% 55%;
+    --primary: 38 60% 42%;
     --primary-foreground: 0 0% 5%;
     --secondary: 0 0% 15%;
-    --secondary-foreground: 40 70% 65%;
+    --secondary-foreground: 40 50% 55%;
     --muted: 0 0% 20%;
-    --muted-foreground: 38 30% 55%;
-    --accent: 38 80% 50%;
+    --muted-foreground: 38 25% 45%;
+    --accent: 38 60% 42%;
     --accent-foreground: 0 0% 5%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 38 50% 25%;
+    --border: 38 40% 22%;
     --input: 0 0% 15%;
-    --ring: 38 80% 50%;
-    --banner-bg: 38 80% 50%;
+    --ring: 38 60% 42%;
+    --banner-bg: 38 60% 42%;
     --banner-text: 0 0% 5%;
-    --save-badge: 38 80% 50%;
-    --price-sale: 38 80% 50%;
+    --save-badge: 38 60% 42%;
+    --price-sale: 38 60% 42%;
     --price-old: 0 0% 50%;
-    --rating-star: 38 80% 50%;
+    --rating-star: 38 60% 42%;
     --sidebar-background: 0 0% 5%;
-    --sidebar-foreground: 40 70% 65%;
-    --sidebar-primary: 38 80% 50%;
+    --sidebar-foreground: 40 50% 55%;
+    --sidebar-primary: 38 60% 42%;
     --sidebar-primary-foreground: 0 0% 5%;
     --sidebar-accent: 0 0% 15%;
-    --sidebar-accent-foreground: 40 70% 65%;
-    --sidebar-border: 38 50% 25%;
-    --sidebar-ring: 38 80% 50%;
+    --sidebar-accent-foreground: 40 50% 55%;
+    --sidebar-border: 38 40% 22%;
+    --sidebar-ring: 38 60% 42%;
   }
 }
 
