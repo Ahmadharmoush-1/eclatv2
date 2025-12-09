@@ -1,5 +1,4 @@
-import { ArrowRight, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Sparkles } from "lucide-react";
 
 const RecommendedSection = () => {
   return (
@@ -15,9 +14,6 @@ const RecommendedSection = () => {
             <div className="h-1 w-32 bg-gradient-to-r from-gold to-gold-light mt-2 rounded-full"></div>
           </h2>
         </div>
-        <Button variant="ghost" className="text-gold hover:text-gold-light hover:bg-gold/10 font-semibold border border-gold/20 hover:border-gold/50">
-          VIEW ALL <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
       </div>
     </div>
   );
