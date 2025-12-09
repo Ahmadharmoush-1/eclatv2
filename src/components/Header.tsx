@@ -33,7 +33,7 @@ const Header = ({ selectedTag = "all", onTagChange, availableTags = [] }: Header
             <img 
               src={logo} 
               alt="Éclat Parfum Beirut" 
-              className="h-16 object-contain"
+              className="h-24 object-contain"
             />
           </div>
           
