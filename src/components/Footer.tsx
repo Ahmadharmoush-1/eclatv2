@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Twitter } from "lucide-react";
+import { Instagram } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -16,28 +16,12 @@ const Footer = () => {
         
         <div className="flex justify-center gap-6 mb-8">
           <a 
-            href="https://facebook.com" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-secondary p-3 rounded-full hover:bg-gold/10 border border-gold/20 hover:border-gold transition-all hover:scale-110"
-          >
-            <Facebook className="h-5 w-5 text-gold" />
-          </a>
-          <a 
             href="https://instagram.com" 
             target="_blank"
             rel="noopener noreferrer"
             className="bg-secondary p-3 rounded-full hover:bg-gold/10 border border-gold/20 hover:border-gold transition-all hover:scale-110"
           >
             <Instagram className="h-5 w-5 text-gold" />
-          </a>
-          <a 
-            href="https://twitter.com" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-secondary p-3 rounded-full hover:bg-gold/10 border border-gold/20 hover:border-gold transition-all hover:scale-110"
-          >
-            <Twitter className="h-5 w-5 text-gold" />
           </a>
         </div>
         
