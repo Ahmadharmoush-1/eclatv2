@@ -37,12 +37,20 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </Badge>
 
         {/* Image */}
-        <div className="relative aspect-square p-6 bg-black/50">
+        <div className="relative aspect-square p-3 bg-black/50">
+
           <img
-            src={product.image}
-            alt={product.name}
-            className="w-full h-full object-contain group-hover:scale-110 transition"
-          />
+  src={product.image}
+  alt={product.name}
+  className="
+    w-full h-full
+    object-cover
+    object-center
+    group-hover:scale-105
+    transition
+  "
+/>
+
         </div>
 
         {/* Info */}
