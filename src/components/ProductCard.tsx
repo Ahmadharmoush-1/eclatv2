@@ -1,69 +1,105 @@
 import { Star, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { useCart } from "@/contexts/CartContext";
 import { Link } from "react-router-dom";
+import { Product } from "@/data/products";
+import { useCart } from "@/contexts/CartContext";
 
 interface ProductCardProps {
-  id: number;
-  name: string;
-  image: string;
-  price: number;
-  oldPrice: number;
-  rating: number;
-  reviews: number;
-  discount: number;
+  product: Product;
 }
 
-const ProductCard = ({ id, name, image, price, oldPrice, rating, reviews, discount }: ProductCardProps) => {
+const ProductCard = ({ product }: ProductCardProps) => {
   const { addItem } = useCart();
 
-  const handleAddToCart = (e: React.MouseEvent) => {
+  const handleAddSizeToCart = (
+    e: React.MouseEvent,
+    size: { ml: number; price: number; oldPrice: number }
+  ) => {
     e.preventDefault();
     e.stopPropagation();
-    addItem({ id, name, image, price });
+
+    addItem({
+      id: Number(`${product.id}${size.ml}`), // unique per size
+      name: `${product.name} - ${size.ml}ml`,
+      image: product.image,
+      price: size.price,
+    });
   };
 
   return (
-    <Link to={`/product/${id}`}>
-      <div className="relative bg-card rounded-lg overflow-hidden border border-gold/20 shadow-lg shadow-gold/5 hover:shadow-2xl hover:shadow-gold/20 transition-all hover:-translate-y-2 cursor-pointer group">
-        <Badge className="absolute top-3 left-3 z-10 bg-gold text-black font-bold px-3 py-1.5 rounded-md uppercase text-xs tracking-wider">
-          -{discount}%
+    <Link to={`/product/${product.id}`}>
+      <div className="relative bg-card rounded-lg overflow-hidden border border-gold/20 shadow-lg hover:-translate-y-2 transition-all group">
+
+        {/* Discount */}
+        <Badge className="absolute top-3 left-3 z-10 bg-gold text-black font-bold">
+          -{product.discount}%
         </Badge>
-        
-        <div className="relative aspect-square p-6 bg-gradient-to-br from-secondary to-black/50">
-          <img 
-            src={image} 
-            alt={name}
-            className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
+
+        {/* Image */}
+        <div className="relative aspect-square p-6 bg-black/50">
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-full object-contain group-hover:scale-110 transition"
           />
-          
-          <Button 
-            size="icon"
-            onClick={handleAddToCart}
-            className="absolute bottom-4 right-4 h-12 w-12 rounded-full bg-gold hover:bg-gold-light text-black shadow-xl hover:scale-110 transition-all active:scale-95 z-10 font-bold"
-          >
-            <ShoppingBag className="h-5 w-5" />
-          </Button>
         </div>
-        
-        <div className="p-4 bg-gradient-to-b from-card to-secondary">
-          <div className="flex items-center gap-1 mb-2">
+
+        {/* Info */}
+        <div className="p-4 space-y-3">
+          {/* Rating */}
+          <div className="flex gap-1">
             {[...Array(5)].map((_, i) => (
-              <Star 
-                key={i} 
-                className={`h-4 w-4 ${i < Math.floor(rating) ? 'fill-gold text-gold' : 'text-muted'}`}
+              <Star
+                key={i}
+                className={`h-4 w-4 ${
+                  i < Math.floor(product.rating)
+                    ? "fill-gold text-gold"
+                    : "text-muted"
+                }`}
               />
             ))}
-            <span className="text-sm text-muted-foreground ml-1">({reviews})</span>
           </div>
-          
-          <h3 className="font-semibold text-base text-gold-light mb-2 line-clamp-2">{name}</h3>
-          
-          <div className="flex items-center gap-2">
-            <span className="text-gold font-bold text-xl">${price.toFixed(2)}</span>
-            <span className="text-price-old line-through text-sm">${oldPrice.toFixed(2)}</span>
-          </div>
+
+          <h3 className="font-semibold text-gold-light">
+            {product.name}
+          </h3>
+
+          {/* 🔥 SIZE BUTTONS */}
+          {/* SIZE SELECTOR */}
+<div className="flex gap-2 mt-2">
+  {product.sizes.map((size) => (
+    <button
+      key={size.ml}
+      onClick={(e) => handleAddSizeToCart(e, size)}
+      className="
+        flex-1
+        rounded-xl
+        border border-gold/30
+        px-2 py-2
+        text-center
+        bg-black/40
+        hover:bg-gold/10
+        active:scale-95
+        transition
+      "
+    >
+      <p className="text-xs font-semibold text-gold tracking-wide">
+        {size.ml}ml
+      </p>
+
+      <div className="flex items-center justify-center gap-1 mt-0.5">
+        <span className="text-sm font-bold text-gold">
+          ${size.price.toFixed(2)}
+        </span>
+        <span className="text-[10px] text-muted line-through">
+          ${size.oldPrice.toFixed(2)}
+        </span>
+      </div>
+    </button>
+  ))}
+</div>
+
         </div>
       </div>
     </Link>
