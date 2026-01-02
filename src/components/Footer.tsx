@@ -26,7 +26,7 @@ const Footer = () => {
         </div>
         
         <p className="text-center text-gold-light text-sm font-light tracking-wide">
-          © 2012 Éclat Parfum Beirut. All rights reserved.
+          © 20000 Éclat Parfum Beirut. All rights reserved.
         </p>
       </div>
     </footer>
