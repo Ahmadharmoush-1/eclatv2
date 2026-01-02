@@ -19,12 +19,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
     e.preventDefault();
     e.stopPropagation();
 
-    addItem({
-      id: Number(`${product.id}${size.ml}`), // unique per size
-      name: `${product.name} - ${size.ml}ml`,
-      image: product.image,
-      price: size.price,
-    });
+ addItem({
+  id: `${product.id}-${size.ml}`, // ✅ STRING ID
+  name: `${product.name} - ${size.ml}ml`,
+  image: product.image,
+  price: size.price,
+});
+
   };
 
   return (
@@ -63,38 +64,38 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
           {/* 🔥 SIZE BUTTONS */}
           {/* SIZE SELECTOR */}
-<div className="flex gap-2 mt-2">
+<div className="grid grid-cols-2 gap-2 mt-2">
   {product.sizes.map((size) => (
     <button
       key={size.ml}
       onClick={(e) => handleAddSizeToCart(e, size)}
       className="
-        flex-1
-        rounded-xl
-        border border-gold/30
-        px-2 py-2
-        text-center
+        rounded-lg
+        border border-gold/25
         bg-black/40
+        px-2 py-1.5
+        text-center
         hover:bg-gold/10
         active:scale-95
         transition
       "
     >
-      <p className="text-xs font-semibold text-gold tracking-wide">
+      <p className="text-[11px] font-semibold text-gold tracking-wide">
         {size.ml}ml
       </p>
 
-      <div className="flex items-center justify-center gap-1 mt-0.5">
-        <span className="text-sm font-bold text-gold">
-          ${size.price.toFixed(2)}
+      <div className="flex items-center justify-center gap-1 leading-none">
+        <span className="text-[12px] font-bold text-gold">
+          ${size.price.toFixed(0)}
         </span>
-        <span className="text-[10px] text-muted line-through">
-          ${size.oldPrice.toFixed(2)}
+        <span className="text-[9px] text-muted line-through">
+          ${size.oldPrice.toFixed(0)}
         </span>
       </div>
     </button>
   ))}
 </div>
+
 
         </div>
       </div>

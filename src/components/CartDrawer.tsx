@@ -18,7 +18,7 @@ interface CartDrawerProps {
 }
 
 const CartDrawer = ({ open, onOpenChange }: CartDrawerProps) => {
-  const navigate = useNavigate(); // ✅ MUST be inside component
+  const navigate = useNavigate();
 
   const {
     items,
@@ -45,9 +45,10 @@ const CartDrawer = ({ open, onOpenChange }: CartDrawerProps) => {
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent side="right" className="w-full sm:max-w-lg flex flex-col">
+        {/* HEADER */}
         <SheetHeader>
           <SheetTitle className="flex items-center gap-2 text-2xl">
-            <ShoppingBag className="h-6 w-6 text-accent" />
+            <ShoppingBag className="h-6 w-6 text-gold" />
             Shopping Cart ({totalItems})
           </SheetTitle>
         </SheetHeader>
@@ -61,7 +62,10 @@ const CartDrawer = ({ open, onOpenChange }: CartDrawerProps) => {
               <p className="text-muted-foreground mb-6">
                 Add some luxury perfumes to get started!
               </p>
-              <Button onClick={() => onOpenChange(false)} className="bg-accent">
+              <Button
+                onClick={() => onOpenChange(false)}
+                className="bg-gold text-black"
+              >
                 Continue Shopping
               </Button>
             </div>
@@ -70,9 +74,10 @@ const CartDrawer = ({ open, onOpenChange }: CartDrawerProps) => {
               {items.map((item) => (
                 <div
                   key={item.id}
-                  className="bg-card rounded-xl p-4 border border-border shadow-sm"
+                  className="bg-card rounded-xl p-4 border border-gold/20 shadow-sm"
                 >
                   <div className="flex gap-4">
+                    {/* IMAGE */}
                     <div className="w-20 h-20 bg-white rounded-lg overflow-hidden">
                       <img
                         src={item.image}
@@ -81,42 +86,50 @@ const CartDrawer = ({ open, onOpenChange }: CartDrawerProps) => {
                       />
                     </div>
 
+                    {/* INFO */}
                     <div className="flex-1">
-                      <div className="flex justify-between mb-2">
-                        <h4 className="font-semibold">{item.name}</h4>
+                      <div className="flex justify-between items-start mb-1">
+                        <h4 className="font-semibold text-sm">
+                          {item.name}
+                        </h4>
+
+                        {/* DELETE */}
                         <Button
-                          variant="ghost"
                           size="icon"
                           onClick={() => removeItem(item.id)}
-                          className="text-destructive"
+                          className="text-red-500 hover:bg-red-500/10"
                         >
                           <Trash2 className="h-4 w-4" />
                         </Button>
                       </div>
 
-                      <p className="text-lg font-bold mb-3">
+                      <p className="text-lg font-bold text-gold mb-3">
                         ${item.price.toFixed(2)}
                       </p>
 
+                      {/* QUANTITY CONTROLS */}
                       <div className="flex items-center gap-2">
                         <Button
-                          variant="outline"
                           size="icon"
+                          disabled={item.quantity <= 1}
                           onClick={() =>
                             updateQuantity(item.id, item.quantity - 1)
                           }
+                          className="bg-gold/10 hover:bg-gold text-gold hover:text-black border border-gold/40 disabled:opacity-40 active:scale-95 transition"
                         >
                           <Minus className="h-3 w-3" />
                         </Button>
+
                         <span className="w-10 text-center font-semibold">
                           {item.quantity}
                         </span>
+
                         <Button
-                          variant="outline"
                           size="icon"
                           onClick={() =>
                             updateQuantity(item.id, item.quantity + 1)
                           }
+                          className="bg-gold/10 hover:bg-gold text-gold hover:text-black border border-gold/40 active:scale-95 transition"
                         >
                           <Plus className="h-3 w-3" />
                         </Button>
@@ -161,7 +174,7 @@ const CartDrawer = ({ open, onOpenChange }: CartDrawerProps) => {
               </div>
 
               {discount > 0 && (
-                <div className="flex justify-between text-accent">
+                <div className="flex justify-between text-gold">
                   <span>Discount</span>
                   <span>- ${discount.toFixed(2)}</span>
                 </div>
@@ -178,16 +191,16 @@ const CartDrawer = ({ open, onOpenChange }: CartDrawerProps) => {
 
               <div className="flex justify-between text-lg font-bold">
                 <span>Total</span>
-                <span className="text-accent">
+                <span className="text-gold">
                   ${total.toFixed(2)}
                 </span>
               </div>
             </div>
 
-            {/* ✅ SUMMARY BUTTON */}
+            {/* SUMMARY BUTTON */}
             <Button
               size="lg"
-              className="w-full bg-gold text-black"
+              className="w-full bg-gold text-black active:scale-95 transition"
               onClick={() => {
                 onOpenChange(false);
                 navigate("/checkout");

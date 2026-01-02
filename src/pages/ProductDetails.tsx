@@ -47,7 +47,7 @@ const ProductDetails = () => {
 
   const handleAddToCart = () => {
     addItem({
-      id: Number(`${product.id}${selectedSize.ml}`), // unique per size
+      id: `${product.id}-${selectedSize.ml}`, // unique per size
       name: `${product.name} - ${selectedSize.label}`,
       image: product.image,
       price: selectedSize.price,
