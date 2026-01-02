@@ -47,19 +47,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
         {/* Info */}
         <div className="p-4 space-y-3">
-          {/* Rating */}
-          <div className="flex gap-1">
-            {[...Array(5)].map((_, i) => (
-              <Star
-                key={i}
-                className={`h-4 w-4 ${
-                  i < Math.floor(product.rating)
-                    ? "fill-gold text-gold"
-                    : "text-muted"
-                }`}
-              />
-            ))}
-          </div>
+         
 
           <h3 className="font-semibold text-gold-light">
             {product.name}

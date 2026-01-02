@@ -85,7 +85,6 @@ const Header = ({
         onOpenChange={setMenuOpen}
         selectedTag={selectedTag}
         onTagChange={onTagChange}
-        availableTags={availableTags}
       />
 
       <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />

@@ -13,6 +13,8 @@ import Footer from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 import products from "@/data/products";
+import HomeSection from "@/components/HomeSection";
+
 
 
 const Index = () => {
@@ -39,16 +41,21 @@ const Index = () => {
 
   // Main products filter
   const filteredProducts = products.filter((product) => {
-    const matchesSearch =
-      searchQuery === "" ||
-      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.description?.toLowerCase().includes(searchQuery.toLowerCase());
+  const matchesSearch =
+    searchQuery === "" ||
+    product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    product.description.toLowerCase().includes(searchQuery.toLowerCase());
 
-    const matchesTag =
-      selectedTag === "all" || product.tags?.includes(selectedTag);
+  if (selectedTag === "all") return matchesSearch;
 
-    return matchesSearch && matchesTag;
-  });
+  if (selectedTag === "bestsellers") {
+    return matchesSearch && product.isPrivateCollection;
+  }
+
+  // men / women
+  return matchesSearch && product.gender === selectedTag;
+});
+
 
   // Private collection filter
   const privateCollectionProducts = products.filter((product) => {
@@ -58,6 +65,18 @@ const Index = () => {
         product.tags?.includes(privateCollectionTag))
     );
   });
+  const bestsellers = products
+  .filter(p => p.isPrivateCollection)
+  .slice(0, 6);
+
+const menProducts = products
+  .filter(p => p.gender === "men")
+  .slice(0, 6);
+
+const womenProducts = products
+  .filter(p => p.gender === "women")
+  .slice(0, 6);
+
 
   return (
     <div className="min-h-screen bg-background">
@@ -71,6 +90,23 @@ const Index = () => {
 
       <Hero />
       <BenefitsBar />
+      <HomeSection
+  title="⭐ Bestsellers"
+  products={bestsellers}
+  viewAllTag="bestsellers"
+/>
+
+<HomeSection
+  title="👨 For Him"
+  products={menProducts}
+  viewAllTag="men"
+/>
+
+<HomeSection
+  title="👩 For Her"
+  products={womenProducts}
+  viewAllTag="women"
+/>
       <RecommendedSection />
 
       <FilterBar
