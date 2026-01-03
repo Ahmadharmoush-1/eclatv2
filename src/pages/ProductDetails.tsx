@@ -65,15 +65,21 @@ const ProductDetails = () => {
 
         <div className="grid md:grid-cols-2 gap-10">
           {/* IMAGE */}
-          <div className="bg-white rounded-2xl p-6 border aspect-square flex items-center justify-center">
-            <OptimizedImage
-  src={product.image}
-  alt={product.name}
-  priority
-  aspectRatio="square"
-  className="!object-contain w-full h-full"
-/>
-          </div>
+        <div className="
+  bg-white rounded-2xl border 
+  aspect-[3/4] sm:aspect-square
+  p-3 sm:p-6
+  flex items-center justify-center
+  max-h-[320px] sm:max-h-none
+">
+  <OptimizedImage
+    src={product.image}
+    alt={product.name}
+    priority
+    aspectRatio="3/4"
+    className="w-full h-full"
+  />
+</div>
 
           {/* INFO */}
           <div className="space-y-6">
