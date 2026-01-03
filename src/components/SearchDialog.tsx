@@ -1,9 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, X } from "lucide-react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { products } from "@/data/products";
+import { Button } from "@/components/ui/button";
 
 interface SearchDialogProps {
   open: boolean;
@@ -11,122 +9,53 @@ interface SearchDialogProps {
 }
 
 const SearchDialog = ({ open, onOpenChange }: SearchDialogProps) => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [query, setQuery] = useState("");
   const navigate = useNavigate();
 
-  const popularSearches = [
-    "Bleu de Chanel",
-    "Creed Aventus",
-    "Sauvage",
-    "Men's Perfumes",
-    "Women's Perfumes",
-  ];
+  // Reset input when opened
+  useEffect(() => {
+    if (open) setQuery("");
+  }, [open]);
 
-  const handleSearch = (query: string) => {
-    if (query.toLowerCase().includes("men")) {
-      navigate("/?gender=men");
-    } else if (query.toLowerCase().includes("women")) {
-      navigate("/?gender=women");
-    } else {
-      navigate(`/?search=${encodeURIComponent(query)}`);
-    }
+  if (!open) return null;
+
+  const handleSearch = () => {
+    if (!query.trim()) return;
+    navigate(`/?search=${encodeURIComponent(query)}`);
     onOpenChange(false);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" && searchQuery.trim()) {
-      handleSearch(searchQuery);
-    }
-  };
-
-  const searchResults = searchQuery
-    ? products.filter(
-        (product) =>
-          product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          product.brand.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-    : [];
-
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-2xl">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-bold">Search Perfumes</DialogTitle>
-        </DialogHeader>
+    <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center px-4">
+      <div className="relative bg-background w-full max-w-md rounded-xl p-5 border border-gold/20">
+        
+        {/* Close */}
+        <button
+          onClick={() => onOpenChange(false)}
+          className="absolute top-3 right-3 text-muted-foreground hover:text-gold"
+        >
+          <X className="h-5 w-5" />
+        </button>
 
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-          <Input
-            placeholder="Search for perfumes..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyDown={handleKeyDown}
-            className="pl-10 pr-10 py-6 text-lg"
+        {/* Input */}
+        <div className="flex gap-2">
+          <input
             autoFocus
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+            placeholder="Search perfumes..."
+            className="flex-1 px-4 py-3 rounded-lg border bg-background focus:outline-none focus:ring-1 focus:ring-gold"
           />
-          {searchQuery && (
-            <button
-              onClick={() => setSearchQuery("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2"
-            >
-              <X className="h-5 w-5 text-muted-foreground hover:text-foreground" />
-            </button>
-          )}
+          <Button
+            onClick={handleSearch}
+            className="bg-gold text-black hover:bg-gold/90"
+          >
+            <Search className="h-4 w-4" />
+          </Button>
         </div>
-
-        {searchQuery && searchResults.length > 0 && (
-          <div className="mt-6">
-            <h3 className="text-sm font-semibold text-muted-foreground mb-3">
-              Found {searchResults.length} results
-            </h3>
-            <div className="space-y-2 max-h-64 overflow-y-auto">
-              {searchResults.map((product) => (
-                <button
-                  key={product.id}
-                  onClick={() => handleSearch(product.name)}
-                  className="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-secondary transition-colors text-left"
-                >
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-12 h-12 object-cover rounded"
-                  />
-                  <div>
-                    <p className="font-semibold">{product.name}</p>
-                    <p className="text-sm text-muted-foreground">{product.brand}</p>
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {searchQuery && searchResults.length === 0 && (
-          <div className="mt-6">
-            <p className="text-sm text-muted-foreground">
-              No results found for "{searchQuery}". Try a different search term.
-            </p>
-          </div>
-        )}
-
-        {!searchQuery && (
-          <div className="mt-6">
-            <h3 className="text-sm font-semibold text-muted-foreground mb-3">Popular Searches</h3>
-            <div className="flex flex-wrap gap-2">
-              {popularSearches.map((search) => (
-                <button
-                  key={search}
-                  onClick={() => handleSearch(search)}
-                  className="px-4 py-2 rounded-full bg-secondary hover:bg-accent hover:text-accent-foreground text-sm font-medium transition-colors"
-                >
-                  {search}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-      </DialogContent>
-    </Dialog>
+      </div>
+    </div>
   );
 };
 

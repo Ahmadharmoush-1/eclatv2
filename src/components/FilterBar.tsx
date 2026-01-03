@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { SlidersHorizontal } from "lucide-react";
+import { SlidersHorizontal, Search } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,8 +18,14 @@ const FilterBar = ({ selectedTag, onTagChange, availableTags }: FilterBarProps) 
     return selectedTag === "all" ? "All Products" : selectedTag;
   };
 
+  const openSearch = () => {
+    window.dispatchEvent(new Event("open-search"));
+  };
+
   return (
-    <div className="flex items-center justify-between px-4 py-6 bg-background border-y border-gold/20">
+    <div className="flex items-center justify-between px-4 py-6 bg-background border-y border-gold/20 gap-3">
+      
+      {/* FILTER */}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button 
@@ -31,20 +37,30 @@ const FilterBar = ({ selectedTag, onTagChange, availableTags }: FilterBarProps) 
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start" className="w-48 bg-card border-gold/20">
-          <DropdownMenuItem onClick={() => onTagChange("all")} className="text-foreground hover:bg-gold/10">
+          <DropdownMenuItem onClick={() => onTagChange("all")} className="hover:bg-gold/10">
             All Products
           </DropdownMenuItem>
           {availableTags.map((tag) => (
             <DropdownMenuItem 
               key={tag} 
               onClick={() => onTagChange(tag)} 
-              className="text-foreground hover:bg-gold/10"
+              className="hover:bg-gold/10"
             >
               {tag}
             </DropdownMenuItem>
           ))}
         </DropdownMenuContent>
       </DropdownMenu>
+
+      {/* SEARCH BUTTON */}
+      <Button
+        variant="outline"
+        onClick={openSearch}
+        className="border-gold/40 text-gold hover:bg-gold/10 px-5 py-5 font-semibold uppercase tracking-wider"
+      >
+        <Search className="mr-2 h-4 w-4" />
+        Search
+      </Button>
     </div>
   );
 };

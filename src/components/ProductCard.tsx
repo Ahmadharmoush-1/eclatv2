@@ -50,20 +50,21 @@ const ProductCard = memo(
           )}
 
           {/* IMAGE */}
-          <div className="relative aspect-square bg-black/40 p-2 flex items-center justify-center">
-            <OptimizedImage
-              src={product.image}
-              alt={product.name}
-              priority={priority}
-              aspectRatio="square"
-              className="
-                !object-contain
-                w-[90%] h-[90%]
-                transition-transform duration-500
-                group-hover:scale-105
-              "
-            />
-          </div>
+    <div className="relative aspect-[3/4] bg-black/40 p-4 flex items-end justify-center overflow-hidden">
+ <div className="relative aspect-[3/4] bg-black/40 overflow-hidden">
+  <OptimizedImage
+    src={product.image}
+    alt={product.name}
+    priority={priority}
+    aspectRatio="3/4"
+    className="h-full w-full"
+  />
+
+
+  </div>
+</div>
+
+
 
           {/* INFO */}
           <div className="p-3 space-y-2">

@@ -6,6 +6,7 @@ import MobileMenu from "./MobileMenu";
 import SearchDialog from "./SearchDialog";
 import logo from "@/assets/eclat-logo.png";
 import { useCart } from "@/contexts/CartContext";
+import { useEffect } from "react";
 
 interface HeaderProps {
   selectedTag?: string;
@@ -23,6 +24,12 @@ const Header = ({
   const [cartOpen, setCartOpen] = useState(false);
 
   const { totalItems } = useCart();
+
+  useEffect(() => {
+    const openSearch = () => setSearchOpen(true);
+    window.addEventListener("open-search", openSearch);
+    return () => window.removeEventListener("open-search", openSearch);
+  }, []);
 
   return (
     <>

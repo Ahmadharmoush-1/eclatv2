@@ -2,101 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 @layer base {
   :root {
-    /* Black & Gold Luxury Theme */
     --background: 0 0% 7%;
-    --foreground: 40 50% 55%;
+    --foreground: 45 35% 98%;
 
     --card: 0 0% 10%;
-    --card-foreground: 40 50% 55%;
+    --card-foreground: 45 35% 98%;
 
     --popover: 0 0% 10%;
-    --popover-foreground: 40 50% 55%;
+    --popover-foreground: 45 35% 98%;
 
-    --primary: 38 60% 42%;
+    --primary: 43 85% 60%;
     --primary-foreground: 0 0% 5%;
 
     --secondary: 0 0% 15%;
-    --secondary-foreground: 40 50% 55%;
+    --secondary-foreground: 45 30% 94%;
 
     --muted: 0 0% 20%;
-    --muted-foreground: 38 25% 45%;
+    --muted-foreground: 40 20% 75%;
 
-    --accent: 38 60% 42%;
-    --accent-foreground: 0 0% 5%;
+    --accent: 43 80% 58%;
+    --accent-foreground: 45 35% 98%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 38 40% 22%;
-    --input: 0 0% 15%;
-    --ring: 38 60% 42%;
+    --border: 43 45% 28%;
+    --input: 0 0% 20%;
+    --ring: 43 85% 60%;
 
     --radius: 0.5rem;
-    
-    /* Custom luxury colors - Rich Gold */
-    --gold: 38 60% 42%;
-    --gold-light: 40 50% 55%;
-    --gold-dark: 35 65% 30%;
-    --black-pure: 0 0% 0%;
-    --black-light: 0 0% 12%;
-    
-    --banner-bg: 38 60% 42%;
-    --banner-text: 0 0% 5%;
-    --save-badge: 38 60% 42%;
-    --price-sale: 38 60% 42%;
-    --price-old: 0 0% 50%;
-    --rating-star: 38 60% 42%;
 
-    --sidebar-background: 0 0% 5%;
-    --sidebar-foreground: 40 50% 55%;
-    --sidebar-primary: 38 60% 42%;
+    --gold: 43 90% 62%;
+    --gold-light: 43 95% 75%;
+    --gold-dark: 43 75% 50%;
+    --champagne: 40 50% 90%;
+
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 45 35% 98%;
+    --sidebar-primary: 43 85% 60%;
     --sidebar-primary-foreground: 0 0% 5%;
     --sidebar-accent: 0 0% 15%;
-    --sidebar-accent-foreground: 40 50% 55%;
-    --sidebar-border: 38 40% 22%;
-    --sidebar-ring: 38 60% 42%;
-  }
-
-  .dark {
-    --background: 0 0% 7%;
-    --foreground: 40 50% 55%;
-    --card: 0 0% 10%;
-    --card-foreground: 40 50% 55%;
-    --popover: 0 0% 10%;
-    --popover-foreground: 40 50% 55%;
-    --primary: 38 60% 42%;
-    --primary-foreground: 0 0% 5%;
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 40 50% 55%;
-    --muted: 0 0% 20%;
-    --muted-foreground: 38 25% 45%;
-    --accent: 38 60% 42%;
-    --accent-foreground: 0 0% 5%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 38 40% 22%;
-    --input: 0 0% 15%;
-    --ring: 38 60% 42%;
-    --banner-bg: 38 60% 42%;
-    --banner-text: 0 0% 5%;
-    --save-badge: 38 60% 42%;
-    --price-sale: 38 60% 42%;
-    --price-old: 0 0% 50%;
-    --rating-star: 38 60% 42%;
-    --sidebar-background: 0 0% 5%;
-    --sidebar-foreground: 40 50% 55%;
-    --sidebar-primary: 38 60% 42%;
-    --sidebar-primary-foreground: 0 0% 5%;
-    --sidebar-accent: 0 0% 15%;
-    --sidebar-accent-foreground: 40 50% 55%;
-    --sidebar-border: 38 40% 22%;
-    --sidebar-ring: 38 60% 42%;
+    --sidebar-accent-foreground: 45 35% 98%;
+    --sidebar-border: 43 45% 28%;
+    --sidebar-ring: 43 85% 60%;
   }
 }
 
@@ -105,7 +57,226 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground;
+  html {
+    scroll-behavior: smooth;
   }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer components {
+  .gradient-gold {
+    background: linear-gradient(135deg, hsl(var(--gold)) 0%, hsl(var(--gold-light)) 50%, hsl(var(--gold)) 100%);
+  }
+
+  .gradient-gold-text {
+    background: linear-gradient(135deg, hsl(var(--gold-light)) 0%, hsl(var(--gold)) 50%, hsl(var(--gold-dark)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass-card {
+    @apply bg-card/70 backdrop-blur-sm border border-border/60;
+  }
+
+  .gold-glow {
+    box-shadow: 0 0 30px hsl(var(--gold) / 0.25), 0 0 60px hsl(var(--gold) / 0.1);
+  }
+
+  .gold-glow-soft {
+    box-shadow: 0 0 20px hsl(var(--gold) / 0.15);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px hsl(var(--gold) / 0.4), 0 0 40px hsl(var(--gold) / 0.2);
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      110deg,
+      transparent 25%,
+      hsl(var(--gold) / 0.15) 50%,
+      transparent 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Animations */
+@layer utilities {
+  /* Marquee animation for announcement bar */
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+
+  /* Fade animations */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-fade-in-up {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in-down {
+    opacity: 0;
+    animation: fadeInDown 0.6s ease-out forwards;
+  }
+
+  /* Scale animations */
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out forwards;
+  }
+
+  /* Pulse soft */
+  .animate-pulse-soft {
+    animation: pulseSoft 2s ease-in-out infinite;
+  }
+
+  /* Slide animations */
+  .animate-slide-in-right {
+    animation: slideInRight 0.3s ease-out forwards;
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.3s ease-out forwards;
+  }
+
+  /* Hover effects */
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-1;
+  }
+
+  .hover-glow {
+    @apply transition-shadow duration-300 hover:shadow-lg hover:shadow-gold/20;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulseSoft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes slideInRight {
+  from { 
+    opacity: 0;
+    transform: translateX(100%); 
+  }
+  to { 
+    opacity: 1;
+    transform: translateX(0); 
+  }
+}
+
+@keyframes slideInLeft {
+  from { 
+    opacity: 0;
+    transform: translateX(-100%); 
+  }
+  to { 
+    opacity: 1;
+    transform: translateX(0); 
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Minimal scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--gold) / 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--gold) / 0.4);
+}
+
+/* Page transition wrapper */
+.page-transition {
+  animation: fadeInUp 0.4s ease-out;
 }

@@ -74,19 +74,25 @@ const OptimizedImage = ({
       
       {/* Image */}
       {isInView && (
-        <img
-          src={src}
-          alt={alt}
-          loading={priority ? 'eager' : 'lazy'}
-          decoding={priority ? 'sync' : 'async'}
-          onLoad={() => setIsLoaded(true)}
-          className={cn(
-            'h-full w-full transition-opacity duration-300',
-            isLoaded ? 'opacity-100' : 'opacity-0'
-          )}
-          style={{ objectFit: 'contain' }}
-          {...props}
-        />
+<img
+  src={src}
+  alt={alt}
+  loading={priority ? 'eager' : 'lazy'}
+  decoding={priority ? 'sync' : 'async'}
+  onLoad={() => setIsLoaded(true)}
+  className={cn(
+    'h-full w-full transition-all duration-300',
+    isLoaded ? 'opacity-100 scale-[1.06]' : 'opacity-0 scale-100'
+  )}
+  style={{
+    objectFit: 'cover',
+    objectPosition: 'center bottom',
+  }}
+  {...props}
+/>
+
+
+
       )}
     </div>
   );
