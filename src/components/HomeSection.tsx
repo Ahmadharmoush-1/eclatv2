@@ -26,7 +26,7 @@ const HomeSection = ({ title, products, viewAllTag }: HomeSectionProps) => {
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {products.slice(0, 4).map((product) => (
+        {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Product } from "@/data/products";
 import { useCart } from "@/contexts/CartContext";
 import OptimizedImage from "@/components/ui/OptimizedImage";
+import { useDeviceDetect } from "@/hooks/useDeviceDetect";
 
 interface ProductCardProps {
   product: Product;
@@ -12,6 +13,7 @@ interface ProductCardProps {
 
 const ProductCard = memo(({ product, priority = false }: ProductCardProps) => {
   const { addItem } = useCart();
+  const { isLowMemoryDevice } = useDeviceDetect();
 
   const handleAddSizeToCart = (
     e: React.MouseEvent,
@@ -30,22 +32,32 @@ const ProductCard = memo(({ product, priority = false }: ProductCardProps) => {
 
   return (
     <Link to={`/product/${product.id}`}>
-      <div className="relative bg-card rounded-lg overflow-hidden border border-gold/20 shadow-lg">
-
+      <div
+        className={
+          isLowMemoryDevice
+            ? "relative bg-card rounded-lg overflow-hidden border border-gold/20"
+            : "relative bg-card rounded-lg overflow-hidden border border-gold/20 shadow-lg transition-all duration-300 hover:shadow-gold/10"
+        }
+      >
+        {/* DISCOUNT BADGE */}
         {product.discount > 0 && (
           <Badge className="absolute top-2 left-2 z-10 bg-gold text-black text-xs">
             -{product.discount}%
           </Badge>
         )}
 
-        {/* IMAGE */}
+        {/* IMAGE — SAME DESIGN, iOS SAFE */}
         <div className="aspect-[3/4] bg-black/40 overflow-hidden">
           <OptimizedImage
             src={product.image}
             alt={product.name}
             priority={priority}
             aspectRatio="3/4"
-            className="w-full h-full"
+            className={
+              isLowMemoryDevice
+                ? "w-full h-full"
+                : "w-full h-full transition-transform duration-300 hover:scale-[1.03]"
+            }
           />
         </div>
 
@@ -55,6 +67,7 @@ const ProductCard = memo(({ product, priority = false }: ProductCardProps) => {
             {product.name}
           </h3>
 
+          {/* SIZE BUTTONS */}
           <div className="grid grid-cols-2 gap-1">
             {product.sizes.map((size) => (
               <button
@@ -65,7 +78,7 @@ const ProductCard = memo(({ product, priority = false }: ProductCardProps) => {
                 <p className="text-[10px] font-semibold text-gold">
                   {size.ml}ml
                 </p>
-                <div className="flex justify-center gap-1">
+                <div className="flex justify-center gap-1 leading-none">
                   <span className="text-[11px] font-bold text-gold">
                     ${size.price}
                   </span>
