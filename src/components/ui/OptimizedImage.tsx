@@ -18,11 +18,8 @@ const OptimizedImage = ({
   placeholderColor,
   ...props
 }: OptimizedImageProps) => {
-  const isMobile =
-    typeof window !== 'undefined' && window.innerWidth < 768;
-
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isInView, setIsInView] = useState(priority || isMobile);
+  const [isInView, setIsInView] = useState(priority);
   const imgRef = useRef<HTMLDivElement>(null);
 
   const aspectClasses = {
@@ -33,13 +30,17 @@ const OptimizedImage = ({
   };
 
   useEffect(() => {
-    // Always render immediately on priority OR mobile
-    if (priority || isMobile) {
+    // Always render immediately on mobile
+    if (typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches) {
       setIsInView(true);
       return;
     }
 
-    // Fallback if IntersectionObserver not supported
+    if (priority) {
+      setIsInView(true);
+      return;
+    }
+
     if (!('IntersectionObserver' in window)) {
       setIsInView(true);
       return;
@@ -53,7 +54,7 @@ const OptimizedImage = ({
         }
       },
       {
-        rootMargin: '300px',
+        rootMargin: '400px',
         threshold: 0,
       }
     );
@@ -61,7 +62,7 @@ const OptimizedImage = ({
     if (imgRef.current) observer.observe(imgRef.current);
 
     return () => observer.disconnect();
-  }, [priority, isMobile]);
+  }, [priority]);
 
   return (
     <div
@@ -80,25 +81,23 @@ const OptimizedImage = ({
         />
       )}
 
-      {/* Image */}
-      {isInView && (
-        <img
-          src={src}
-          alt={alt}
-          loading={priority ? 'eager' : 'lazy'}
-          decoding="async"
-          onLoad={() => setIsLoaded(true)}
-          className={cn(
-            'h-full w-full transition-all duration-300',
-            isLoaded ? 'opacity-100 scale-[1.06]' : 'opacity-0 scale-100'
-          )}
-          style={{
-            objectFit: 'cover',
-            objectPosition: 'center bottom',
-          }}
-          {...props}
-        />
-      )}
+      {/* Image — ALWAYS MOUNTED */}
+      <img
+        src={isInView ? src : undefined}
+        alt={alt}
+        loading={priority ? 'eager' : 'lazy'}
+        decoding="async"
+        onLoad={() => setIsLoaded(true)}
+        className={cn(
+          'h-full w-full transition-opacity duration-300',
+          isLoaded ? 'opacity-100' : 'opacity-0'
+        )}
+        style={{
+          objectFit: 'cover',
+          objectPosition: 'center bottom',
+        }}
+        {...props}
+      />
     </div>
   );
 };
