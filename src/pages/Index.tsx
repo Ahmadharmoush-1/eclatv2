@@ -15,14 +15,17 @@ import HomeSection from "@/components/HomeSection";
 
 import products from "@/data/products";
 import { usePagination } from "@/hooks/usePagination";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Index = () => {
+  const isMobile = useIsMobile();
   const [searchParams] = useSearchParams();
+
   const [selectedTag, setSelectedTag] = useState("all");
   const [privateCollectionTag, setPrivateCollectionTag] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
 
-  /* ---------------- URL PARAMS ---------------- */
+  /* URL PARAMS */
   useEffect(() => {
     const tagParam = searchParams.get("tag");
     const searchParam = searchParams.get("search");
@@ -31,14 +34,14 @@ const Index = () => {
     if (searchParam) setSearchQuery(searchParam);
   }, [searchParams]);
 
-  /* ---------------- TAGS ---------------- */
+  /* TAGS */
   const availableTags = Array.from(
-    new Set(products.flatMap((product) => product.tags ?? []))
+    new Set(products.flatMap((p) => p.tags ?? []))
   )
     .filter((tag) => !["Exclusive", "Luxury", "Oud"].includes(tag))
     .sort();
 
-  /* ---------------- MAIN FILTER ---------------- */
+  /* FILTER */
   const filteredProducts = products.filter((product) => {
     const matchesSearch =
       searchQuery === "" ||
@@ -46,16 +49,14 @@ const Index = () => {
       product.description.toLowerCase().includes(searchQuery.toLowerCase());
 
     if (selectedTag === "all") return matchesSearch;
-
     if (selectedTag === "bestsellers") {
       return matchesSearch && product.isPrivateCollection;
     }
 
-    // men / women
     return matchesSearch && product.gender === selectedTag;
   });
 
-  /* ---------------- PAGINATION ---------------- */
+  /* PAGINATION (SAFE FOR iOS) */
   const {
     currentItems: paginatedProducts,
     hasMore,
@@ -66,23 +67,14 @@ const Index = () => {
     itemsPerPage: 4,
   });
 
-  // Reset pagination when filter/search changes
   useEffect(() => {
     reset();
   }, [selectedTag, searchQuery, reset]);
 
-  /* ---------------- HOME SECTIONS ---------------- */
-  const bestsellers = products
-    .filter((p) => p.isPrivateCollection)
-    .slice(0, 6);
-
-  const menProducts = products
-    .filter((p) => p.gender === "men")
-    .slice(0, 6);
-
-  const womenProducts = products
-    .filter((p) => p.gender === "women")
-    .slice(0, 6);
+  /* HOME DATA */
+  const bestsellers = products.filter(p => p.isPrivateCollection);
+  const menProducts = products.filter(p => p.gender === "men");
+  const womenProducts = products.filter(p => p.gender === "women");
 
   return (
     <div className="min-h-screen bg-background">
@@ -97,18 +89,15 @@ const Index = () => {
       <Hero />
       <BenefitsBar />
 
-      {/* ---------------- HOME SECTIONS ---------------- */}
-      <HomeSection
-        title="Bestsellers"
-        products={bestsellers}
-        viewAllTag="bestsellers"
-      />
-
-      <HomeSection title="For Him" products={menProducts} viewAllTag="men" />
-
-      <HomeSection title="For Her" products={womenProducts} viewAllTag="women" />
-
-      <RecommendedSection />
+      {/* DESKTOP-ONLY SECTIONS (CRITICAL FIX) */}
+      {!isMobile && (
+        <>
+          <HomeSection title="Bestsellers" products={bestsellers} viewAllTag="bestsellers" />
+          <HomeSection title="For Him" products={menProducts} viewAllTag="men" />
+          <HomeSection title="For Her" products={womenProducts} viewAllTag="women" />
+          <RecommendedSection />
+        </>
+      )}
 
       <FilterBar
         selectedTag={selectedTag}
@@ -116,40 +105,23 @@ const Index = () => {
         availableTags={availableTags}
       />
 
-      {/* ---------------- PRODUCTS GRID (PAGINATED) ---------------- */}
+      {/* PRODUCTS GRID */}
       <div id="products-section" className="px-4 pb-8">
-        {searchQuery && (
-          <div className="max-w-7xl mx-auto mb-4">
-            <p className="text-muted-foreground">
-              Search results for "{searchQuery}" ({filteredProducts.length})
-            </p>
-          </div>
-        )}
-
         <div className="grid grid-cols-2 gap-4 max-w-7xl mx-auto">
-          {paginatedProducts.length > 0 ? (
-            paginatedProducts.map((product, index) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                priority={index < 4} // LCP optimization
-              />
-            ))
-          ) : (
-            <div className="col-span-2 text-center py-12">
-              <p className="text-muted-foreground text-lg">
-                No products found
-              </p>
-            </div>
-          )}
+          {paginatedProducts.map((product, index) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              priority={index < 2}
+            />
+          ))}
         </div>
 
-        {/* LOAD MORE */}
         {hasMore && (
           <div className="flex justify-center mt-6">
             <button
               onClick={loadMore}
-              className="px-6 py-2 rounded-md bg-gold text-black font-medium hover:bg-gold/90 transition"
+              className="px-6 py-2 rounded-md bg-gold text-black font-medium"
             >
               Load more
             </button>
@@ -157,8 +129,8 @@ const Index = () => {
         )}
       </div>
 
-      {/* ---------------- PRIVATE COLLECTION ---------------- */}
-      {selectedTag === "all" && (
+      {/* PRIVATE COLLECTION – DESKTOP ONLY */}
+      {!isMobile && selectedTag === "all" && (
         <PrivateCollectionSection
           selectedTag={privateCollectionTag}
           onTagChange={setPrivateCollectionTag}
