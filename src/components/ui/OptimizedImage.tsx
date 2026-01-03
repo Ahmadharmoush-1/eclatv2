@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, ImgHTMLAttributes } from 'react';
+import { useState, ImgHTMLAttributes } from 'react';
 import { cn } from '@/lib/utils';
 
 interface OptimizedImageProps extends ImgHTMLAttributes<HTMLImageElement> {
@@ -19,8 +19,6 @@ const OptimizedImage = ({
   ...props
 }: OptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isInView, setIsInView] = useState(priority);
-  const imgRef = useRef<HTMLDivElement>(null);
 
   const aspectClasses = {
     square: 'aspect-square',
@@ -29,44 +27,8 @@ const OptimizedImage = ({
     '16/9': 'aspect-video',
   };
 
-  useEffect(() => {
-    // Always render immediately on mobile
-    if (typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches) {
-      setIsInView(true);
-      return;
-    }
-
-    if (priority) {
-      setIsInView(true);
-      return;
-    }
-
-    if (!('IntersectionObserver' in window)) {
-      setIsInView(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          observer.disconnect();
-        }
-      },
-      {
-        rootMargin: '400px',
-        threshold: 0,
-      }
-    );
-
-    if (imgRef.current) observer.observe(imgRef.current);
-
-    return () => observer.disconnect();
-  }, [priority]);
-
   return (
     <div
-      ref={imgRef}
       className={cn(
         'relative overflow-hidden bg-muted',
         aspectClasses[aspectRatio],
@@ -81,9 +43,9 @@ const OptimizedImage = ({
         />
       )}
 
-      {/* Image — ALWAYS MOUNTED */}
+      {/* Image — ALWAYS PRESENT */}
       <img
-        src={isInView ? src : undefined}
+        src={src}
         alt={alt}
         loading={priority ? 'eager' : 'lazy'}
         decoding="async"
