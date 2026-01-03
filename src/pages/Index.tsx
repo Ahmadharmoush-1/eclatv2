@@ -11,11 +11,11 @@ import HomeSection from "@/components/HomeSection";
 import RecommendedSection from "@/components/RecommendedSection";
 import PrivateCollectionSection from "@/components/PrivateCollectionSection";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import ProductCard from "@/components/ProductCard";
 
 import products from "@/data/products";
 import { usePagination } from "@/hooks/usePagination";
 import { useDeviceDetect } from "@/hooks/useDeviceDetect";
-import ProductCard from "@/components/ProductCard";
 
 const Index = () => {
   const { isMobile, isLowMemoryDevice } = useDeviceDetect();
@@ -69,7 +69,7 @@ const Index = () => {
     reset,
   } = usePagination({
     items: filteredProducts,
-    itemsPerPage: 4, // ALWAYS 4 on initial render
+    itemsPerPage: 4, // ALWAYS safe on first render
   });
 
   useEffect(() => {
@@ -91,7 +91,7 @@ const Index = () => {
 
   return (
     <>
-      {/* SEO */}
+      {/* ---------------- SEO ---------------- */}
       <Helmet>
         <title>Eclat Parfum Beirut | Premium Fragrances</title>
         <meta
@@ -107,20 +107,11 @@ const Index = () => {
           availableTags={availableTags}
         />
 
-        {/* HERO — hidden on low memory devices */}
-        {!isLowMemoryDevice && <Hero />}
+        {/* ---------------- HERO & BENEFITS (ALL DEVICES) ---------------- */}
+        <Hero isLowMemoryDevice={isLowMemoryDevice} />
+        <BenefitsBar isLowMemoryDevice={isLowMemoryDevice} />
 
-        {!isLowMemoryDevice && <BenefitsBar />}
-
-        {/* Fallback header for iOS Safari */}
-        {isLowMemoryDevice && (
-          <div className="text-center py-10">
-            <h1 className="text-3xl font-bold text-gold">Éclat Parfum</h1>
-            <p className="text-muted-foreground">Premium Fragrances</p>
-          </div>
-        )}
-
-        {/* COLLECTIONS */}
+        {/* ---------------- COLLECTION SECTIONS ---------------- */}
         <HomeSection
           title="Bestsellers"
           products={bestsellers}
@@ -151,7 +142,7 @@ const Index = () => {
           availableTags={availableTags}
         />
 
-        {/* PRODUCT GRID */}
+        {/* ---------------- PRODUCT GRID ---------------- */}
         <div id="products-section" className="px-4 pb-8">
           <div className="grid grid-cols-2 gap-4 max-w-7xl mx-auto">
             {currentItems.map((product, index) => (
@@ -175,7 +166,7 @@ const Index = () => {
           )}
         </div>
 
-        {/* PRIVATE COLLECTION */}
+        {/* ---------------- PRIVATE COLLECTION ---------------- */}
         {!isLowMemoryDevice && selectedTag === "all" && (
           <PrivateCollectionSection
             selectedTag={privateCollectionTag}

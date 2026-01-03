@@ -12,14 +12,29 @@ interface HomeSectionProps {
 const HomeSection = ({ title, products, viewAllTag }: HomeSectionProps) => {
   const navigate = useNavigate();
 
+  const handleViewAll = () => {
+    // 1️⃣ navigate with tag
+    navigate(`/?tag=${viewAllTag}`);
+
+    // 2️⃣ wait for render, then scroll
+    setTimeout(() => {
+      const section = document.getElementById("products-section");
+      section?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 200);
+  };
+
   return (
     <section className="max-w-7xl mx-auto px-4 py-10">
       <div className="flex justify-between mb-6">
         <h2 className="text-2xl font-bold text-gold">{title}</h2>
+
         <Button
           variant="outline"
           className="border-gold text-gold"
-          onClick={() => navigate(`/?tag=${viewAllTag}`)}
+          onClick={handleViewAll}
         >
           View All
         </Button>
