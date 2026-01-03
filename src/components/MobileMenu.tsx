@@ -44,11 +44,12 @@ const MobileMenu = ({
   };
 
   const buttonClass = (tag: string) =>
-    `w-full text-left p-3 rounded-lg transition-all ${
-      selectedTag === tag
-        ? "bg-gold text-black font-bold"
-        : "bg-gold/10 hover:bg-gold/20 text-foreground"
-    }`;
+  `w-full text-left p-3 rounded-lg transition-all ${
+    selectedTag === tag
+      ? "bg-gold text-black font-bold"
+      : "bg-gold/10 hover:bg-gold/20 text-gold"
+  }`;
+
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
@@ -63,14 +64,15 @@ const MobileMenu = ({
         <nav className="space-y-2">
           {mainMenuItems.map((item) => (
             <Link
-              key={item.label}
-              to={item.path}
-              onClick={() => onOpenChange(false)}
-              className="flex items-center gap-3 p-4 rounded-xl hover:bg-gold/10 border border-gold/20"
-            >
-              <item.icon className="h-5 w-5 text-gold" />
-              <span className="font-semibold">{item.label}</span>
-            </Link>
+  key={item.label}
+  to={item.path}
+  onClick={() => onOpenChange(false)}
+  className="flex items-center gap-3 p-4 rounded-xl hover:bg-gold/10 border border-gold/20"
+>
+  <item.icon className="h-5 w-5 text-gold" />
+  <span className="font-semibold text-gold">{item.label}</span>
+</Link>
+
           ))}
         </nav>
 
@@ -118,9 +120,10 @@ const MobileMenu = ({
 
         <Separator className="my-6 bg-gold/20" />
 
-        <div className="text-xs text-muted-foreground">
-          © 2012 Éclat Parfum Beirut
-        </div>
+        <div className="text-xs text-gold/70">
+  © 2012 Éclat Parfum Beirut
+</div>
+
       </SheetContent>
     </Sheet>
   );
