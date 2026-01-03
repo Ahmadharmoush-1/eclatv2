@@ -63,7 +63,7 @@ const Index = () => {
     reset,
   } = usePagination({
     items: filteredProducts,
-    itemsPerPage: 8,
+    itemsPerPage: 4,
   });
 
   // Reset pagination when filter/search changes

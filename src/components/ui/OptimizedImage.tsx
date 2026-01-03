@@ -45,21 +45,20 @@ const OptimizedImage = ({
 
       {/* Image — ALWAYS PRESENT */}
       <img
-        src={src}
-        alt={alt}
-        loading={priority ? 'eager' : 'lazy'}
-        decoding="async"
-        onLoad={() => setIsLoaded(true)}
-        className={cn(
-          'h-full w-full transition-opacity duration-300',
-          isLoaded ? 'opacity-100' : 'opacity-0'
-        )}
-        style={{
-          objectFit: 'cover',
-          objectPosition: 'center bottom',
-        }}
-        {...props}
-      />
+  src={src}
+  alt={alt}
+  loading={priority ? "eager" : "lazy"}
+  decoding="async"
+  onLoad={() => setIsLoaded(true)}
+  className={`h-full w-full transition-opacity duration-300 ${
+    isLoaded ? "opacity-100" : "opacity-0"
+  }`}
+  style={{
+    objectFit: "cover",
+    objectPosition: "center bottom",
+  }}
+/>
+
     </div>
   );
 };
