@@ -111,7 +111,7 @@ const MobileMenu = ({
               className={buttonClass("bestsellers")}
               onClick={() => handleCategoryClick("bestsellers")}
             >
-              Bestsellers ⭐
+              Bestsellers 
             </button>
           </div>
         </div>

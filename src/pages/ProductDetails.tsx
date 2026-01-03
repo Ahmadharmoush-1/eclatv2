@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { products } from "@/data/products";
 import { useCart } from "@/contexts/CartContext";
+import OptimizedImage from "@/components/ui/OptimizedImage";
 
 type SizeOption = {
   label: string;
@@ -65,15 +66,13 @@ const ProductDetails = () => {
         <div className="grid md:grid-cols-2 gap-10">
           {/* IMAGE */}
           <div className="bg-white rounded-2xl p-6 border aspect-square flex items-center justify-center">
-            <img
-              src={product.image}
-              alt={product.name}
-              loading="lazy"
-              decoding="async"
-              fetchPriority="high"
-              className="w-full h-full object-contain transition-opacity duration-300 opacity-0"
-              onLoad={(e) => (e.currentTarget.style.opacity = "1")}
-            />
+            <OptimizedImage
+  src={product.image}
+  alt={product.name}
+  priority
+  aspectRatio="square"
+  className="!object-contain w-full h-full"
+/>
           </div>
 
           {/* INFO */}

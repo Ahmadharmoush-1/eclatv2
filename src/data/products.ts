@@ -4,7 +4,7 @@ import perfumeYsl from "@/assets/perfume-ysl.png";
 import perfumeSauvage from "@/assets/perfume-sauvage.png";
 
 export interface Product {
-  tags: any;
+  tags: string[] | undefined;
   id: string;
   name: string;
   brand: string;
