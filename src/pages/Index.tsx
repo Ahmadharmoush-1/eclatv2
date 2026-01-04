@@ -18,7 +18,7 @@ import { usePagination } from "@/hooks/usePagination";
 import { useDeviceDetect } from "@/hooks/useDeviceDetect";
 
 const Index = () => {
-  const { isMobile, isLowMemoryDevice } = useDeviceDetect();
+  const { isMobile, isLowMemoryDevice,isIOS } = useDeviceDetect();
   const [searchParams] = useSearchParams();
 
   const [selectedTag, setSelectedTag] = useState("all");
@@ -118,23 +118,23 @@ const Index = () => {
           viewAllTag="bestsellers"
         />
 
-        {!isLowMemoryDevice && (
-          <>
-            <HomeSection
-              title="For Him"
-              products={menProducts}
-              viewAllTag="men"
-            />
+        {(!isLowMemoryDevice || isIOS) && (
+  <>
+    <HomeSection
+      title="For Him"
+      products={menProducts}
+      viewAllTag="men"
+    />
 
-            <HomeSection
-              title="For Her"
-              products={womenProducts}
-              viewAllTag="women"
-            />
+    <HomeSection
+      title="For Her"
+      products={womenProducts}
+      viewAllTag="women"
+    />
 
-            <RecommendedSection />
-          </>
-        )}
+    <RecommendedSection />
+  </>
+)}
 
         <FilterBar
           selectedTag={selectedTag}
