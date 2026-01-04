@@ -36,10 +36,11 @@ const OptimizedImage = ({
         decoding="async"
         onLoad={() => setIsLoaded(true)}
         className={cn(
-          'h-full w-full transition-opacity duration-300',
-          isLoaded ? 'opacity-100' : 'opacity-0'
-        )}
-        style={{ objectFit: 'contain' }}
+  "h-full w-full transition-all duration-300 scale-[1.05]",
+  isLoaded ? "opacity-100" : "opacity-0"
+)}
+       style={{ objectFit: 'cover' }}
+
         {...props}
       />
     </div>

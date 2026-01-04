@@ -1317,7 +1317,7 @@ sizes: [
 },
 
 {
-  id: "men-68",
+  id: "men-17.99",
   name: "Les Sables Roses",
   brand: "Inspired by Louis Vuitton",
   image: "/men/LesSablesRosesLouisVuitton.jpg",
@@ -1639,7 +1639,7 @@ sizes: [
 },
 
 {
-  id: "men-85",
+  id: "men-25",
   name: "Red Tobacco",
   brand: "Inspired by Mancera",
   image: "/men/RedTobaccoMancera.jpg",
@@ -2397,7 +2397,7 @@ sizes: [
 },
 
 {
-  id: "men-11.990",
+  id: "men-130",
   name: "Champion",
   brand: "Inspired by Davidoff",
   image: "/men/ChampionDavidoff.jpg",
@@ -2416,7 +2416,7 @@ sizes: [
 },
 
 {
-  id: "men-11.991",
+  id: "men-131",
   name: "Chic For Men",
   brand: "Inspired by Carolina Herrera",
   image: "/men/ChicForMenCarolinaHerrera.jpg",
@@ -2435,7 +2435,7 @@ sizes: [
 },
 
 {
-  id: "men-11.992",
+  id: "men-132",
   name: "Club de Nuit Oud",
   brand: "Inspired by Armaf",
   image: "/men/ClubdeNuitIntenseManArmaf.jpg",
@@ -2454,7 +2454,7 @@ sizes: [
 },
 
 {
-  id: "men-11.993",
+  id: "men-133",
   name: "Cuir Intense",
   brand: "Inspired by Guerlain",
   image: "/men/CuirIntenseGuerlain.jpg",
@@ -2473,7 +2473,7 @@ sizes: [
 },
 
 {
-  id: "men-11.994",
+  id: "men-134",
   name: "Dark Blue",
   brand: "Inspired by Hugo Boss",
   image: "/men/DarkBlueHugeBoss.jpg",
@@ -2491,7 +2491,7 @@ sizes: [
   tags: undefined,
 },
 {
-  id: "men-11.995",
+  id: "men-135",
   name: "Dolce & Gabbana Pour Homme",
   brand: "Inspired by Dolce & Gabbana",
   image: "/men/Dolce&GabbanaPourHomme.jpg",
@@ -2510,7 +2510,7 @@ sizes: [
 },
 
 {
-  id: "men-11.996",
+  id: "men-136",
   name: "Dunhill London",
   brand: "Inspired by Alfred Dunhill",
   image: "/men/DunhillLondon.jpg",
@@ -2529,7 +2529,7 @@ sizes: [
 },
 
 {
-  id: "men-11.997",
+  id: "men-137",
   name: "Elie Saab Homme",
   brand: "Inspired by Elie Saab",
   image: "/men/ElieSaabLHomme.jpg",
@@ -2548,7 +2548,7 @@ sizes: [
 },
 
 {
-  id: "men-11.998",
+  id: "men-138",
   name: "Stronger With You Leather",
   brand: "Inspired by Emporio Armani",
   image: "/men/EmporioArmaniStrongerWithYouLeather.jpg",
@@ -2567,7 +2567,7 @@ sizes: [
 },
 
 {
-  id: "men-11.999",
+  id: "men-139",
   name: "Stronger With You Tobacco",
   brand: "Inspired by Emporio Armani",
   image: "/men/EmporioArmaniStrongerWithYouTobacco.jpg",
@@ -3073,7 +3073,7 @@ sizes: [
   tags: undefined,
 },
 {
-  id: "men-168",
+  id: "men-117.99",
   name: "Polo Red",
   brand: "Inspired by Ralph Lauren",
   image: "/men/PoloRed.jpg",
@@ -3346,7 +3346,7 @@ sizes: [
   tags: undefined,
 },
 {
-  id: "men-185",
+  id: "men-125",
   name: "Viking",
   brand: "Inspired by Creed",
   image: "/men/VikingCreed.jpg",
@@ -4010,7 +4010,7 @@ sizes: [
   isPrivateCollection: false,
   sizes: [
     { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },{
@@ -4025,8 +4025,8 @@ sizes: [
   description: "Fresh aquatic floral scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4042,8 +4042,8 @@ sizes: [
   description: "Deep mysterious oriental fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 65 },
-    { ml: 100, price: 72, oldPrice: 90 },
+    { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4059,8 +4059,8 @@ sizes: [
   description: "Iconic jasmine woody fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+      { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4076,8 +4076,8 @@ sizes: [
   description: "Elegant floral feminine scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4093,8 +4093,8 @@ sizes: [
   description: "Soft sweet oriental fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4110,8 +4110,8 @@ sizes: [
   description: "Warm boozy gourmand fragrance",
   isPrivateCollection: true,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 70 },
-    { ml: 100, price: 75, oldPrice: 95 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4127,8 +4127,8 @@ sizes: [
   description: "Sweet iconic gourmand scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4144,8 +4144,8 @@ sizes: [
   description: "Elegant warm floral fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+    { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4161,8 +4161,8 @@ sizes: [
   description: "Luxury floral amber fragrance",
   isPrivateCollection: true,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 70 },
-    { ml: 100, price: 75, oldPrice: 95 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4178,8 +4178,8 @@ sizes: [
   description: "Fresh green floral luxury scent",
   isPrivateCollection: true,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 70 },
-    { ml: 100, price: 75, oldPrice: 95 },
+   { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4195,8 +4195,8 @@ sizes: [
   description: "Elegant fruity floral fragrance",
   isPrivateCollection: true,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 70 },
-    { ml: 100, price: 75, oldPrice: 95 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4212,8 +4212,8 @@ sizes: [
   description: "Warm coffee vanilla fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4229,8 +4229,8 @@ sizes: [
   description: "Soft floral romantic scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4246,8 +4246,8 @@ sizes: [
   description: "Fresh fruity feminine fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4263,8 +4263,8 @@ sizes: [
   description: "Light floral fresh scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4280,8 +4280,8 @@ sizes: [
   description: "Soft elegant feminine fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+    { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4297,8 +4297,8 @@ sizes: [
   description: "Sweet fruity modern scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4314,8 +4314,8 @@ sizes: [
   description: "Rich fruity intense fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 65 },
-    { ml: 100, price: 72, oldPrice: 90 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4331,8 +4331,8 @@ sizes: [
   description: "Classic floral feminine scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4348,8 +4348,8 @@ sizes: [
   description: "Warm floral elegant fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4365,8 +4365,8 @@ sizes: [
   description: "Fresh floral timeless scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+      { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4382,8 +4382,8 @@ sizes: [
   description: "Fresh citrus floral fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+   { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4399,8 +4399,8 @@ sizes: [
   description: "Classic aldehydic floral scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 65 },
-    { ml: 100, price: 72, oldPrice: 90 },
+      { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4416,8 +4416,8 @@ sizes: [
   description: "Elegant rose floral fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+      { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4433,8 +4433,8 @@ sizes: [
   description: "Elegant citrus floral fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+      { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4450,8 +4450,8 @@ sizes: [
   description: "Sweet tropical vanilla scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 65 },
-    { ml: 100, price: 72, oldPrice: 90 },
+      { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4467,8 +4467,8 @@ sizes: [
   description: "Dark sensual floral fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+      { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4484,8 +4484,8 @@ sizes: [
   description: "Luxury rose vanilla fragrance",
   isPrivateCollection: true,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 70 },
-    { ml: 100, price: 75, oldPrice: 95 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4501,8 +4501,8 @@ sizes: [
   description: "Warm gourmand feminine scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4518,8 +4518,8 @@ sizes: [
   description: "Sweet vanilla amber fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+      { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4535,8 +4535,8 @@ sizes: [
   description: "Romantic fruity floral scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+   { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4552,8 +4552,8 @@ sizes: [
   description: "Sweet fruity luxury fragrance",
   isPrivateCollection: true,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 70 },
-    { ml: 100, price: 75, oldPrice: 95 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4569,8 +4569,8 @@ sizes: [
   description: "Fresh sensual feminine scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4586,8 +4586,8 @@ sizes: [
   description: "Sweet fruity floral fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+      { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4603,8 +4603,8 @@ sizes: [
   description: "Exotic floral oriental scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4620,8 +4620,8 @@ sizes: [
   description: "Rich floral gourmand fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4637,8 +4637,8 @@ sizes: [
   description: "Elegant floral feminine scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4654,8 +4654,8 @@ sizes: [
   description: "Soft floral sweet fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4671,8 +4671,8 @@ sizes: [
   description: "Sweet seductive gourmand scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+      { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },{
@@ -4687,8 +4687,8 @@ sizes: [
   description: "Fresh floral feminine fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4704,8 +4704,8 @@ sizes: [
   description: "Warm floral amber scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4721,8 +4721,8 @@ sizes: [
   description: "Bold oriental floral fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4738,8 +4738,8 @@ sizes: [
   description: "Warm vanilla floral scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+   { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4755,8 +4755,8 @@ sizes: [
   description: "Fresh modern rose fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+      { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4772,8 +4772,8 @@ sizes: [
   description: "Powdery violet feminine scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+    { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4789,8 +4789,8 @@ sizes: [
   description: "Dark sensual jasmine fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4806,8 +4806,8 @@ sizes: [
   description: "Warm sweet vanilla fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4823,8 +4823,8 @@ sizes: [
   description: "Sweet gourmand candy scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+      { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4840,8 +4840,8 @@ sizes: [
   description: "Sweet oriental gourmand fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4857,8 +4857,8 @@ sizes: [
   description: "Sweet floral luxurious fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+    { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4874,8 +4874,8 @@ sizes: [
   description: "Sweet dark gourmand scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4891,8 +4891,8 @@ sizes: [
   description: "Sweet cherry vanilla fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4908,8 +4908,8 @@ sizes: [
   description: "Warm sweet vanilla floral scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4925,8 +4925,8 @@ sizes: [
   description: "Bold lavender floral fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4942,8 +4942,8 @@ sizes: [
   description: "Fresh citrus summer scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4959,8 +4959,8 @@ sizes: [
   description: "Bold white floral fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4976,8 +4976,8 @@ sizes: [
   description: "Spicy floral intense scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -4993,8 +4993,8 @@ sizes: [
   description: "Sweet cherry almond fragrance",
   isPrivateCollection: true,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 70 },
-    { ml: 100, price: 75, oldPrice: 95 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5010,8 +5010,8 @@ sizes: [
   description: "Sweet gourmand luxury scent",
   isPrivateCollection: true,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 70 },
-    { ml: 100, price: 75, oldPrice: 95 },
+      { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5027,8 +5027,8 @@ sizes: [
   description: "Fresh floral feminine fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+      { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5044,8 +5044,8 @@ sizes: [
   description: "Warm lavender vanilla scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+    { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5061,8 +5061,8 @@ sizes: [
   description: "Sweet fruity romantic fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5078,8 +5078,8 @@ sizes: [
   description: "Soft musky rose fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+    { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5095,8 +5095,8 @@ sizes: [
   description: "Fresh white floral fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5112,8 +5112,8 @@ sizes: [
   description: "Soft musky elegant scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+      { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5129,13 +5129,13 @@ sizes: [
   description: "Dark sensual musk fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+      { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
 {
-  id: "women-68",
+  id: "women-17.99",
   name: "Olympéa",
   brand: "Inspired by Paco Rabanne",
   image: "/women/OlympeaPacoRabanne.jpg",
@@ -5146,8 +5146,8 @@ sizes: [
   description: "Salty vanilla feminine scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5163,8 +5163,8 @@ sizes: [
   description: "Fresh oud elegant fragrance",
   isPrivateCollection: true,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 70 },
-    { ml: 100, price: 75, oldPrice: 95 },
+   { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5180,8 +5180,8 @@ sizes: [
   description: "Sweet rose oud luxury scent",
   isPrivateCollection: true,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 70 },
-    { ml: 100, price: 75, oldPrice: 95 },
+    { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5197,8 +5197,8 @@ sizes: [
   description: "Fresh citrus floral fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+      { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5214,8 +5214,8 @@ sizes: [
   description: "Modern floral amber scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5231,8 +5231,8 @@ sizes: [
   description: "Clean musky elegant fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5248,8 +5248,8 @@ sizes: [
   description: "Soft musky rose fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5265,8 +5265,8 @@ sizes: [
   description: "Sweet vanilla rose scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5282,8 +5282,8 @@ sizes: [
   description: "Warm oriental floral fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+      { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5299,8 +5299,8 @@ sizes: [
   description: "Sweet honey gourmand scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+   { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5316,8 +5316,8 @@ sizes: [
   description: "Bold sweet feminine fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+      { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5333,8 +5333,8 @@ sizes: [
   description: "Soft fruity floral fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5350,8 +5350,8 @@ sizes: [
   description: "Elegant chypre floral scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+      { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5367,8 +5367,8 @@ sizes: [
   description: "Warm feminine floral fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5384,8 +5384,8 @@ sizes: [
   description: "Rich sweet tobacco scent",
   isPrivateCollection: true,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 70 },
-    { ml: 100, price: 75, oldPrice: 95 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5401,8 +5401,8 @@ sizes: [
   description: "Playful spicy floral fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5418,13 +5418,13 @@ sizes: [
   description: "Fresh airy luxury fragrance",
   isPrivateCollection: true,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 70 },
-    { ml: 100, price: 75, oldPrice: 95 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
 {
-  id: "women-85",
+  id: "women-25",
   name: "Valentino Donna Born In Roma",
   brand: "Inspired by Valentino",
   image: "/women/ValentinoBornInRomaDonnaWomen.jpg",
@@ -5435,8 +5435,8 @@ sizes: [
   description: "Modern floral vanilla scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5452,8 +5452,8 @@ sizes: [
   description: "Elegant powdery floral fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+    { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5469,8 +5469,8 @@ sizes: [
   description: "Warm sensual vanilla scent",
   isPrivateCollection: true,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 70 },
-    { ml: 100, price: 75, oldPrice: 95 },
+   { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5486,8 +5486,8 @@ sizes: [
   description: "Rich floral oriental fragrance",
   isPrivateCollection: true,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 70 },
-    { ml: 100, price: 75, oldPrice: 95 },
+  { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5503,8 +5503,8 @@ sizes: [
   description: "Fresh rose feminine fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 17.99, oldPrice: 60 },
-    { ml: 100, price: 68, oldPrice: 85 },
+   { ml: 50, price: 11.99, oldPrice: 17 },
+    { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
 },
@@ -5520,7 +5520,7 @@ sizes: [
   description: "Elegant sensual feminine fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 11.99, oldPrice: 17 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
@@ -5537,7 +5537,7 @@ sizes: [
   description: "Warm musky amber fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 11.99, oldPrice: 17 },
+   { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
@@ -5554,7 +5554,7 @@ sizes: [
   description: "Deep amber oriental scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 11.99, oldPrice: 17 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
@@ -5588,7 +5588,7 @@ sizes: [
   description: "Coffee vanilla gourmand fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 11.99, oldPrice: 17 },
+      { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
@@ -5605,7 +5605,7 @@ sizes: [
   description: "Sweet caramel gourmand scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 11.99, oldPrice: 17 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
@@ -5622,7 +5622,7 @@ sizes: [
   description: "Fresh floral everyday fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 11.99, oldPrice: 17 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
@@ -5639,7 +5639,7 @@ sizes: [
   description: "Sweet caramel vanilla fragrance",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 11.99, oldPrice: 17 },
+      { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,
@@ -5656,7 +5656,7 @@ sizes: [
   description: "Elegant floral vanilla scent",
   isPrivateCollection: false,
   sizes: [
-    { ml: 50, price: 11.99, oldPrice: 17 },
+     { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
   ],
   tags: undefined,

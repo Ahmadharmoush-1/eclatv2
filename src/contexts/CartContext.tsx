@@ -5,7 +5,7 @@ import { toast } from "sonner";
    TYPES
 ======================= */
 export interface CartItem {
-  id: string; // ✅ FIXED (string, not number)
+  id: string;
   name: string;
   image: string;
   price: number;
@@ -18,11 +18,16 @@ interface CartContextType {
   removeItem: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
+
+  address: string;
+  setAddress: (address: string) => void;
+
   totalItems: number;
   subtotal: number;
   shipping: number;
   discount: number;
   total: number;
+
   applyPromoCode: (code: string) => boolean;
   promoCode: string | null;
 }
@@ -38,8 +43,8 @@ const PROMO_CODES = {
   WELCOME15: 0.15,
 } as const;
 
-const FREE_SHIPPING_THRESHOLD = 50;
-const STANDARD_SHIPPING = 5.99;
+const BEIRUT_SHIPPING = 3;
+const OUTSIDE_BEIRUT_SHIPPING = 5;
 
 /* =======================
    PROVIDER
@@ -51,6 +56,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   });
 
   const [promoCode, setPromoCode] = useState<string | null>(null);
+  const [address, setAddress] = useState("");
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(items));
@@ -60,44 +66,32 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
      ACTIONS
   ======================= */
   const addItem = (item: Omit<CartItem, "quantity">) => {
-    setItems((prev) => {
-      const existing = prev.find((i) => i.id === item.id);
-
+    setItems(prev => {
+      const existing = prev.find(i => i.id === item.id);
       if (existing) {
-        toast.success("Quantity updated");
-        return prev.map((i) =>
-          i.id === item.id
-            ? { ...i, quantity: i.quantity + 1 }
-            : i
+        return prev.map(i =>
+          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
         );
       }
-
-      toast.success("Added to cart");
       return [...prev, { ...item, quantity: 1 }];
     });
   };
 
   const removeItem = (id: string) => {
-    setItems((prev) => prev.filter((i) => i.id !== id));
-    toast.success("Removed from cart");
+    setItems(prev => prev.filter(i => i.id !== id));
   };
 
   const updateQuantity = (id: string, quantity: number) => {
-    if (quantity < 1) {
-      removeItem(id);
-      return;
-    }
-
-    setItems((prev) =>
-      prev.map((i) =>
-        i.id === id ? { ...i, quantity } : i
-      )
+    if (quantity < 1) return removeItem(id);
+    setItems(prev =>
+      prev.map(i => (i.id === id ? { ...i, quantity } : i))
     );
   };
 
   const clearCart = () => {
     setItems([]);
     setPromoCode(null);
+    setAddress("");
   };
 
   const applyPromoCode = (code: string): boolean => {
@@ -114,8 +108,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   /* =======================
      CALCULATIONS
   ======================= */
-  const totalItems = items.reduce((sum, i) => sum + i.quantity, 0);
-  const subtotal = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+  const totalItems = items.reduce((s, i) => s + i.quantity, 0);
+  const subtotal = items.reduce((s, i) => s + i.price * i.quantity, 0);
 
   const discountRate = promoCode
     ? PROMO_CODES[promoCode as keyof typeof PROMO_CODES]
@@ -123,7 +117,17 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const discount = subtotal * discountRate;
   const subtotalAfterDiscount = subtotal - discount;
-  const shipping = subtotalAfterDiscount >= FREE_SHIPPING_THRESHOLD ? 0 : STANDARD_SHIPPING;
+
+  const isBeirut =
+    address.toLowerCase().includes("beirut") ||
+    address.toLowerCase().includes("بيروت");
+
+  const shipping = address
+    ? isBeirut
+      ? BEIRUT_SHIPPING
+      : OUTSIDE_BEIRUT_SHIPPING
+    : 0;
+
   const total = subtotalAfterDiscount + shipping;
 
   return (
@@ -134,6 +138,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         removeItem,
         updateQuantity,
         clearCart,
+        address,
+        setAddress,
         totalItems,
         subtotal,
         shipping,
