@@ -1,4 +1,5 @@
 import { Gift, BadgeCheck, Clock, Truck } from "lucide-react";
+import Reveal from "@/components/ui/Reveal";
 
 interface BenefitsBarProps {
   isLowMemoryDevice?: boolean;
@@ -45,40 +46,46 @@ const BenefitsBar = ({ isLowMemoryDevice = false }: BenefitsBarProps) => {
               : "hover:bg-gold/5 transition-all";
 
             return (
-              <div
+              <Reveal
                 key={index}
-                className={`flex flex-col items-center text-center gap-2 p-3 rounded-lg ${highlightClasses}`}
+                stagger={100}
+                index={index}
+                variant="fade-up"
               >
                 <div
-                  className={`p-3 rounded-full ${
-                    benefit.highlight ? "bg-gold" : "bg-gold/20"
-                  }`}
+                  className={`flex flex-col items-center text-center gap-2 p-3 rounded-lg ${highlightClasses}`}
                 >
-                  <Icon
-                    className={`h-6 w-6 ${
-                      benefit.highlight ? "text-black" : "text-gold"
-                    }`}
-                  />
-                </div>
-
-                <div>
-                  <h3
-                    className={`font-bold text-sm md:text-base uppercase tracking-wide ${
-                      benefit.highlight
-                        ? isLowMemoryDevice
-                          ? "text-gold"
-                          : "text-gold animate-pulse"
-                        : "text-gold"
+                  <div
+                    className={`p-3 rounded-full ${
+                      benefit.highlight ? "bg-gold" : "bg-gold/20"
                     }`}
                   >
-                    {benefit.title}
-                  </h3>
+                    <Icon
+                      className={`h-6 w-6 ${
+                        benefit.highlight ? "text-black" : "text-gold"
+                      }`}
+                    />
+                  </div>
 
-                  <p className="text-gold-light text-xs md:text-sm">
-                    {benefit.description}
-                  </p>
+                  <div>
+                    <h3
+                      className={`font-bold text-sm md:text-base uppercase tracking-wide ${
+                        benefit.highlight
+                          ? isLowMemoryDevice
+                            ? "text-gold"
+                            : "text-gold animate-pulse"
+                          : "text-gold"
+                      }`}
+                    >
+                      {benefit.title}
+                    </h3>
+
+                    <p className="text-gold-light text-xs md:text-sm">
+                      {benefit.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Reveal>
             );
           })}
         </div>

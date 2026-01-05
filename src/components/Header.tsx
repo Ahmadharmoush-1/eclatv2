@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, Search, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CartDrawer from "./CartDrawer";
@@ -6,8 +6,7 @@ import MobileMenu from "./MobileMenu";
 import SearchDialog from "./SearchDialog";
 import logo from "@/assets/eclat-logo.png";
 import { useCart } from "@/contexts/CartContext";
-import { useEffect } from "react";
-
+import Reveal from "@/components/ui/Reveal";
 interface HeaderProps {
   selectedTag?: string;
   onTagChange?: (tag: string) => void;
@@ -33,8 +32,18 @@ const Header = ({
 
   return (
     <>
+     <Reveal variant="fade">
+  <div className="relative overflow-hidden bg-black border-b border-gold/30">
+    <div className="whitespace-nowrap animate-marquee text-gold text-sm tracking-widest font-medium py-2">
+      ✨ LIMITED TIME OFFER — DISCOUNT ON ALL PERFUMES — FREE DELIVERY IN LEBANON ✨
+    </div>
+  </div>
+</Reveal>
+
+
+      {/* HEADER */}
       <header className="sticky top-0 z-50 bg-black/95 backdrop-blur-sm border-b border-gold/20">
-        <div className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 max-w-7xl mx-auto">
           
           {/* Menu */}
           <Button
@@ -47,16 +56,16 @@ const Header = ({
           </Button>
 
           {/* Logo */}
-          <div className="flex items-center">
-            <img
-              src={logo}
-              alt="Éclat Parfum Beirut"
-              className="h-24 object-contain"
-            />
-          </div>
+         <Reveal variant="fade-down">
+  <img
+    src={logo}
+    alt="Éclat Parfum Beirut"
+    className="h-16 sm:h-24 object-contain"
+  />
+</Reveal>
 
           {/* Actions */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2">
             <Button
               variant="ghost"
               size="icon"
@@ -66,7 +75,6 @@ const Header = ({
               <Search className="h-5 w-5" />
             </Button>
 
-            {/* Cart Button */}
             <Button
               variant="ghost"
               size="icon"
@@ -75,7 +83,7 @@ const Header = ({
             >
               <ShoppingBag className="h-6 w-6" />
               {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-accent text-black text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                <span className="absolute -top-1 -right-1 bg-gold text-black text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
                   {totalItems}
                 </span>
               )}
@@ -84,16 +92,14 @@ const Header = ({
         </div>
       </header>
 
-      {/* Drawers */}
+      {/* DRAWERS */}
       <CartDrawer open={cartOpen} onOpenChange={setCartOpen} />
-
       <MobileMenu
         open={menuOpen}
         onOpenChange={setMenuOpen}
         selectedTag={selectedTag}
         onTagChange={onTagChange}
       />
-
       <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
     </>
   );

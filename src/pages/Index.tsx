@@ -69,7 +69,7 @@ const Index = () => {
     reset,
   } = usePagination({
     items: filteredProducts,
-    itemsPerPage: 4, // ALWAYS safe on first render
+    itemsPerPage: 8, // ALWAYS safe on first render
   });
 
   useEffect(() => {
