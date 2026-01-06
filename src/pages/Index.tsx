@@ -16,6 +16,7 @@ import ProductCard from "@/components/ProductCard";
 import products from "@/data/products";
 import { usePagination } from "@/hooks/usePagination";
 import { useDeviceDetect } from "@/hooks/useDeviceDetect";
+import ProductSearchBar from '@/components/home/ProductSearchBar';
 
 const Index = () => {
   const { isMobile, isLowMemoryDevice,isIOS } = useDeviceDetect();
@@ -110,6 +111,9 @@ const Index = () => {
         {/* ---------------- HERO & BENEFITS (ALL DEVICES) ---------------- */}
         <Hero isLowMemoryDevice={isLowMemoryDevice} />
         <BenefitsBar isLowMemoryDevice={isLowMemoryDevice} />
+          
+          {/* Search bar above bestsellers */}
+          <ProductSearchBar />
 
         {/* ---------------- COLLECTION SECTIONS ---------------- */}
         <HomeSection
