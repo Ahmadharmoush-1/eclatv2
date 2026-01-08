@@ -113,7 +113,11 @@ const Index = () => {
         <BenefitsBar isLowMemoryDevice={isLowMemoryDevice} />
           
           {/* Search bar above bestsellers */}
-          <ProductSearchBar />
+         {/* Search bar above bestsellers */}
+<div className="relative z-50 isolate">
+  <ProductSearchBar />
+</div>
+
 
         {/* ---------------- COLLECTION SECTIONS ---------------- */}
         <HomeSection

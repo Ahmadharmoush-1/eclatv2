@@ -45,11 +45,7 @@ const ProductSearchBar = () => {
 
   /* ---------------- UX HELPERS ---------------- */
   useEffect(() => {
-    if (!searchQuery.trim()) {
-      setShowSuggestions(false);
-    } else {
-      setShowSuggestions(true);
-    }
+    setShowSuggestions(!!searchQuery.trim());
   }, [searchQuery]);
 
   const toggleSearch = () => {
@@ -60,8 +56,9 @@ const ProductSearchBar = () => {
 
   return (
     <Reveal variant="fade-up">
-      <div className="flex justify-center py-6 md:py-8">
-        <div className="w-full max-w-md px-4 relative">
+      {/* 🔥 z-[9999] ensures it stays above product cards */}
+      <div className="relative z-[9999] flex justify-center py-6 md:py-8">
+        <div className="w-full max-w-md px-4">
           {isExpanded ? (
             <div className="relative">
               {/* INPUT */}
@@ -98,9 +95,10 @@ const ProductSearchBar = () => {
                 </Button>
               </form>
 
-              {/* SUGGESTIONS */}
+              {/* ✅ SUGGESTIONS (FULLY VISIBLE ON MOBILE) */}
               {showSuggestions && suggestions.length > 0 && (
-                <div className="absolute z-50 mt-2 w-full bg-card border rounded-lg shadow-lg overflow-hidden">
+                <div className="absolute left-0 right-0 mt-2 z-[999999] isolation isolate bg-card border rounded-lg shadow-xl max-h-[70vh] overflow-y-auto">
+
                   {suggestions.map((product) => (
                     <button
                       key={product.id}
