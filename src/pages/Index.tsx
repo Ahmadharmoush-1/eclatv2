@@ -70,7 +70,7 @@ const Index = () => {
     reset,
   } = usePagination({
     items: filteredProducts,
-    itemsPerPage: 8, // ALWAYS safe on first render
+    itemsPerPage: 6, // ALWAYS safe on first render
   });
 
   useEffect(() => {
@@ -143,12 +143,12 @@ const Index = () => {
     {/* <RecommendedSection /> */}
   </>
 )}
-
+{/* 
         <FilterBar
           selectedTag={selectedTag}
           onTagChange={setSelectedTag}
           availableTags={availableTags}
-        />
+        /> */}
 
         {/* ---------------- PRODUCT GRID ---------------- */}
         <div id="products-section" className="px-4 pb-8">
@@ -175,13 +175,14 @@ const Index = () => {
         </div>
 
         {/* ---------------- PRIVATE COLLECTION ---------------- */}
-        {!isLowMemoryDevice && selectedTag === "all" && (
-          <PrivateCollectionSection
-            selectedTag={privateCollectionTag}
-            onTagChange={setPrivateCollectionTag}
-            availableTags={availableTags}
-          />
-        )}
+        {(isIOS || !isLowMemoryDevice) && selectedTag === "all" && (
+  <PrivateCollectionSection
+    selectedTag={privateCollectionTag}
+    onTagChange={setPrivateCollectionTag}
+    availableTags={availableTags}
+  />
+)}
+
 
         <Footer />
         <WhatsAppButton />

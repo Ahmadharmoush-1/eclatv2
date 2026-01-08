@@ -1,6 +1,11 @@
 import { Home, Mail, HelpCircle, Filter } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import Reveal from "@/components/ui/Reveal";
 
@@ -26,14 +31,17 @@ const MobileMenu = ({
   ];
 
   const handleCategoryClick = (tag: string) => {
-    onTagChange?.(tag);
     onOpenChange(false);
 
-    if (tag === "all") {
-      navigate("/");
-    } else {
-      navigate(`/?tag=${tag}`);
+    // 🔐 PRIVATE COLLECTION
+    if (tag === "private-collection") {
+      navigate("/#private-collection");
+      return;
     }
+
+    // NORMAL CATEGORIES
+    onTagChange?.(tag);
+    navigate(`/?tag=${tag}`);
 
     setTimeout(() => {
       document
@@ -67,7 +75,9 @@ const MobileMenu = ({
                 className="flex items-center gap-3 p-4 rounded-xl hover:bg-gold/10 border border-gold/20"
               >
                 <item.icon className="h-5 w-5 text-gold" />
-                <span className="font-semibold text-gold">{item.label}</span>
+                <span className="font-semibold text-gold">
+                  {item.label}
+                </span>
               </Link>
             </Reveal>
           ))}
@@ -85,18 +95,20 @@ const MobileMenu = ({
             </div>
 
             <div className="space-y-2">
-              {["all", "men", "women", "bestsellers"].map((tag, i) => (
-                <Reveal key={tag} stagger={60} index={i}>
-                  <button
-                    className={buttonClass(tag)}
-                    onClick={() => handleCategoryClick(tag)}
-                  >
-                    {tag === "all"
-                      ? "All Products"
-                      : tag.charAt(0).toUpperCase() + tag.slice(1)}
-                  </button>
-                </Reveal>
-              ))}
+              {["men", "women", "bestsellers", "private-collection"].map(
+                (tag, i) => (
+                  <Reveal key={tag} stagger={60} index={i}>
+                    <button
+                      className={buttonClass(tag)}
+                      onClick={() => handleCategoryClick(tag)}
+                    >
+                      {tag
+                        .replace("-", " ")
+                        .replace(/\b\w/g, (l) => l.toUpperCase())}
+                    </button>
+                  </Reveal>
+                )
+              )}
             </div>
           </div>
         </Reveal>
