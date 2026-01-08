@@ -4,23 +4,27 @@ import perfumeYsl from "@/assets/perfume-ysl.png";
 import perfumeSauvage from "@/assets/perfume-sauvage.png";
 
 export interface Product {
-  tags: string[] | undefined;
   id: string;
   name: string;
   brand: string;
-  image: string; // path string
+  image: string;
   price: number;
   oldPrice: number;
   discount: number;
   gender: "men" | "women" | "unisex";
   description: string;
-  isPrivateCollection: boolean;
-  sizes: Array<{
+
+  isPrivateCollection: boolean; // exclusive
+  isBestseller?: boolean;       // 🔥 NEW (optional)
+
+  tags?: string[];
+  sizes: {
     ml: number;
     price: number;
     oldPrice: number;
-  }>;
+  }[];
 }
+
 
 
 export const products: Product[] = [
@@ -35,6 +39,7 @@ export const products: Product[] = [
     gender: "men",
     description: "A bold, masculine fragrance with notes of leather and wood",
     isPrivateCollection: false,
+    isBestseller: true,
    sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -53,7 +58,8 @@ export const products: Product[] = [
     discount: 21,
     gender: "men",
     description: "Warm tobacco and vanilla blend for evening occasions",
-    isPrivateCollection: false,
+     isPrivateCollection: false,
+    isBestseller: true,
   sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -72,7 +78,8 @@ export const products: Product[] = [
     discount: 17.99,
     gender: "men",
     description: "Wild and untamed fragrance with spicy pepper notes",
-    isPrivateCollection: false,
+     isPrivateCollection: false,
+    isBestseller: true,
     sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -91,7 +98,8 @@ export const products: Product[] = [
     discount: 17.99,
     gender: "men",
     description: "Sophisticated nightlife fragrance with amber base",
-    isPrivateCollection: false,
+     isPrivateCollection: false,
+    isBestseller: true,
    sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -110,7 +118,8 @@ export const products: Product[] = [
     discount: 17.99,
     gender: "men",
     description: "Bold and luxurious masculine fragrance",
-    isPrivateCollection: false,
+     isPrivateCollection: false,
+    isBestseller: true,
    sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -129,7 +138,8 @@ export const products: Product[] = [
     discount: 17.99,
     gender: "men",
     description: "Modern urban fragrance",
-    isPrivateCollection: false,
+     isPrivateCollection: false,
+    isBestseller: true,
    sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -148,7 +158,8 @@ export const products: Product[] = [
     discount: 17.99,
     gender: "men",
     description: "Warm seductive scent",
-    isPrivateCollection: false,
+     isPrivateCollection: false,
+    isBestseller: true,
    sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -167,7 +178,8 @@ export const products: Product[] = [
     discount: 21,
     gender: "men",
     description: "Luxury powerful fragrance",
-    isPrivateCollection: false,
+     isPrivateCollection: false,
+    isBestseller: true,
     sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -186,7 +198,8 @@ export const products: Product[] = [
     discount: 17.99,
     gender: "men",
     description: "Fresh aquatic scent",
-    isPrivateCollection: false,
+     isPrivateCollection: false,
+    isBestseller: true,
    sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -205,7 +218,8 @@ export const products: Product[] = [
     discount: 17.99,
     gender: "men",
     description: "Deep marine fragrance",
-    isPrivateCollection: false,
+     isPrivateCollection: false,
+    isBestseller: true,
    sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -262,7 +276,8 @@ export const products: Product[] = [
     discount: 17.99,
     gender: "men",
     description: "Sporty fresh masculine scent",
-    isPrivateCollection: false,
+     isPrivateCollection: false,
+    isBestseller: true,
 sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -377,7 +392,8 @@ sizes: [
     discount: 17.99,
     gender: "men",
     description: "Clean fresh fragrance",
-    isPrivateCollection: false,
+     isPrivateCollection: false,
+    isBestseller: true,
    sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -397,6 +413,7 @@ sizes: [
     gender: "men",
     description: "Bold spicy fragrance",
     isPrivateCollection: false,
+    isBestseller: true,
  sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -2235,7 +2252,7 @@ sizes: [
   discount: 27,
   gender: "men",
   description: "Luxurious deep oud oriental fragrance",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
  sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -2254,7 +2271,7 @@ sizes: [
   discount: 21,
   gender: "men",
   description: "Sweet creamy vanilla gourmand scent",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
  sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -2292,7 +2309,7 @@ sizes: [
   discount: 27,
   gender: "men",
   description: "Modern fresh woody luxury fragrance",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
   sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -2311,7 +2328,7 @@ sizes: [
   discount: 27,
   gender: "men",
   description: "Soft woody incense luxury fragrance",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
  sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -2463,7 +2480,7 @@ sizes: [
   discount: 27,
   gender: "men",
   description: "Dark leather oriental fragrance",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
 sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -2614,7 +2631,7 @@ sizes: [
   discount: 27,
   gender: "men",
   description: "Mineral metallic modern luxury fragrance",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
   sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -2633,7 +2650,7 @@ sizes: [
   discount: 31,
   gender: "men",
   description: "Exotic fruity spicy luxury fragrance",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
  sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -2652,7 +2669,7 @@ sizes: [
   discount: 27,
   gender: "men",
   description: "Fresh woody aromatic luxury fragrance",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
 sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -2709,7 +2726,7 @@ sizes: [
   discount: 31,
   gender: "men",
   description: "Floral exotic luxury fragrance",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
 sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -2728,7 +2745,7 @@ sizes: [
   discount: 27,
   gender: "men",
   description: "Fresh woody oriental luxury scent",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
 sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -2785,7 +2802,7 @@ sizes: [
   discount: 31,
   gender: "men",
   description: "Smoky incense powerful luxury fragrance",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
 sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
   { ml: 100, price: 17.99, oldPrice: 25 },
@@ -3269,7 +3286,7 @@ sizes: [
   discount: 24,
   gender: "men",
   description: "Luxurious floral woody rich fragrance",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
   sizes: [
     { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
@@ -3303,7 +3320,7 @@ sizes: [
   discount: 24,
   gender: "men",
   description: "Soft warm spicy luxurious scent",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
   sizes: [
     { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
@@ -4007,7 +4024,8 @@ sizes: [
   discount: 17.99,
   gender: "women",
   description: "Delicate floral feminine fragrance",
-  isPrivateCollection: false,
+   isPrivateCollection: false,
+    isBestseller: true,
   sizes: [
     { ml: 50, price: 17.99, oldPrice: 60 },
     { ml: 100, price: 17.99, oldPrice: 25 },
@@ -4023,7 +4041,8 @@ sizes: [
   discount: 17.99,
   gender: "women",
   description: "Fresh aquatic floral scent",
-  isPrivateCollection: false,
+   isPrivateCollection: false,
+    isBestseller: true,
   sizes: [
      { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
@@ -4040,7 +4059,8 @@ sizes: [
   discount: 17.99,
   gender: "women",
   description: "Deep mysterious oriental fragrance",
-  isPrivateCollection: false,
+   isPrivateCollection: false,
+    isBestseller: true,
   sizes: [
     { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
@@ -4057,7 +4077,8 @@ sizes: [
   discount: 17.99,
   gender: "women",
   description: "Iconic jasmine woody fragrance",
-  isPrivateCollection: false,
+   isPrivateCollection: false,
+    isBestseller: true,
   sizes: [
       { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
@@ -4108,7 +4129,8 @@ sizes: [
   discount: 21,
   gender: "women",
   description: "Warm boozy gourmand fragrance",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
+    isBestseller: true,
   sizes: [
      { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
@@ -4125,7 +4147,8 @@ sizes: [
   discount: 17.99,
   gender: "women",
   description: "Sweet iconic gourmand scent",
-  isPrivateCollection: false,
+   isPrivateCollection: false,
+    isBestseller: true,
   sizes: [
      { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
@@ -4142,7 +4165,8 @@ sizes: [
   discount: 17.99,
   gender: "women",
   description: "Elegant warm floral fragrance",
-  isPrivateCollection: false,
+   isPrivateCollection: false,
+    isBestseller: true,
   sizes: [
     { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
@@ -4159,7 +4183,7 @@ sizes: [
   discount: 21,
   gender: "women",
   description: "Luxury floral amber fragrance",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
   sizes: [
      { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
@@ -4176,7 +4200,7 @@ sizes: [
   discount: 21,
   gender: "women",
   description: "Fresh green floral luxury scent",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
   sizes: [
    { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
@@ -4193,7 +4217,8 @@ sizes: [
   discount: 21,
   gender: "women",
   description: "Elegant fruity floral fragrance",
-  isPrivateCollection: true,
+   isPrivateCollection: false,
+    isBestseller: true,
   sizes: [
      { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
@@ -4210,7 +4235,8 @@ sizes: [
   discount: 17.99,
   gender: "women",
   description: "Warm coffee vanilla fragrance",
-  isPrivateCollection: false,
+   isPrivateCollection: false,
+    isBestseller: true,
   sizes: [
      { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
@@ -4295,7 +4321,8 @@ sizes: [
   discount: 17.99,
   gender: "women",
   description: "Sweet fruity modern scent",
-  isPrivateCollection: false,
+   isPrivateCollection: false,
+    isBestseller: true,
   sizes: [
      { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
@@ -4482,7 +4509,7 @@ sizes: [
   discount: 21,
   gender: "women",
   description: "Luxury rose vanilla fragrance",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
   sizes: [
      { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
@@ -4550,7 +4577,7 @@ sizes: [
   discount: 21,
   gender: "women",
   description: "Sweet fruity luxury fragrance",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
   sizes: [
      { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
@@ -4991,7 +5018,7 @@ sizes: [
   discount: 21,
   gender: "women",
   description: "Sweet cherry almond fragrance",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
   sizes: [
      { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
@@ -5008,7 +5035,7 @@ sizes: [
   discount: 21,
   gender: "women",
   description: "Sweet gourmand luxury scent",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
   sizes: [
       { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
@@ -5161,7 +5188,7 @@ sizes: [
   discount: 21,
   gender: "women",
   description: "Fresh oud elegant fragrance",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
   sizes: [
    { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
@@ -5178,7 +5205,7 @@ sizes: [
   discount: 21,
   gender: "women",
   description: "Sweet rose oud luxury scent",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
   sizes: [
     { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
@@ -5382,7 +5409,7 @@ sizes: [
   discount: 21,
   gender: "women",
   description: "Rich sweet tobacco scent",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
   sizes: [
      { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
@@ -5416,7 +5443,7 @@ sizes: [
   discount: 21,
   gender: "women",
   description: "Fresh airy luxury fragrance",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
   sizes: [
      { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
@@ -5467,7 +5494,7 @@ sizes: [
   discount: 21,
   gender: "women",
   description: "Warm sensual vanilla scent",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
   sizes: [
    { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },
@@ -5484,7 +5511,7 @@ sizes: [
   discount: 21,
   gender: "women",
   description: "Rich floral oriental fragrance",
-  isPrivateCollection: true,
+  isPrivateCollection: false,
   sizes: [
   { ml: 50, price: 11.99, oldPrice: 17 },
     { ml: 100, price: 17.99, oldPrice: 25 },

@@ -6,9 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import BenefitsBar from "@/components/BenefitsBar";
-import FilterBar from "@/components/FilterBar";
 import HomeSection from "@/components/HomeSection";
-import RecommendedSection from "@/components/RecommendedSection";
 import PrivateCollectionSection from "@/components/PrivateCollectionSection";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import ProductCard from "@/components/ProductCard";
@@ -16,10 +14,10 @@ import ProductCard from "@/components/ProductCard";
 import products from "@/data/products";
 import { usePagination } from "@/hooks/usePagination";
 import { useDeviceDetect } from "@/hooks/useDeviceDetect";
-import ProductSearchBar from '@/components/home/ProductSearchBar';
+import ProductSearchBar from "@/components/home/ProductSearchBar";
 
 const Index = () => {
-  const { isMobile, isLowMemoryDevice,isIOS } = useDeviceDetect();
+  const { isMobile, isLowMemoryDevice, isIOS } = useDeviceDetect();
   const [searchParams] = useSearchParams();
 
   const [selectedTag, setSelectedTag] = useState("all");
@@ -31,8 +29,8 @@ const Index = () => {
     const tag = searchParams.get("tag");
     const search = searchParams.get("search");
 
-    if (tag) setSelectedTag(tag);
-    if (search) setSearchQuery(search);
+    setSelectedTag(tag ?? "all");
+    setSearchQuery(search ?? "");
   }, [searchParams]);
 
   /* ---------------- TAGS ---------------- */
@@ -48,51 +46,57 @@ const Index = () => {
       product.description.toLowerCase().includes(searchQuery.toLowerCase());
 
     if (selectedTag === "all") return matchesSearch;
+
     if (selectedTag === "bestsellers") {
-      return matchesSearch && product.isPrivateCollection;
+      return matchesSearch && product.isBestseller === true;
     }
 
     return matchesSearch && product.gender === selectedTag;
   });
 
-  /* ---------------- MEMORY-SAFE LIMITS ---------------- */
+  /* ---------------- MEMORY SAFE LIMITS ---------------- */
   const maxProductsPerSection = isLowMemoryDevice
     ? 4
     : isMobile
     ? 6
     : 8;
 
-  /* ---------------- PAGINATION (CRITICAL) ---------------- */
-  const {
-    currentItems,
-    hasMore,
-    loadMore,
-    reset,
-  } = usePagination({
+  /* ---------------- PAGINATION ---------------- */
+  const { currentItems, hasMore, loadMore, reset } = usePagination({
     items: filteredProducts,
-    itemsPerPage: 6, // ALWAYS safe on first render
+    itemsPerPage: 6,
   });
 
   useEffect(() => {
     reset();
   }, [selectedTag, searchQuery, reset]);
 
+  /* ---------------- AUTO SCROLL ---------------- */
+  useEffect(() => {
+    if (selectedTag !== "all" || searchQuery !== "") {
+      setTimeout(() => {
+        document
+          .getElementById("products-section")
+          ?.scrollIntoView({ behavior: "smooth" });
+      }, 150);
+    }
+  }, [selectedTag, searchQuery]);
+
   /* ---------------- HOME DATA ---------------- */
   const bestsellers = products
-    .filter((p) => p.isPrivateCollection)
+    .filter((p) => p.isBestseller === true)
     .slice(0, maxProductsPerSection);
 
   const menProducts = products
-    .filter((p) => p.gender === "men")
+    .filter((p) => p.gender === "men" && !p.isPrivateCollection)
     .slice(0, maxProductsPerSection);
 
   const womenProducts = products
-    .filter((p) => p.gender === "women")
+    .filter((p) => p.gender === "women" && !p.isPrivateCollection)
     .slice(0, maxProductsPerSection);
 
   return (
     <>
-      {/* ---------------- SEO ---------------- */}
       <Helmet>
         <title>Eclat Parfum Beirut | Premium Fragrances</title>
         <meta
@@ -108,50 +112,67 @@ const Index = () => {
           availableTags={availableTags}
         />
 
-        {/* ---------------- HERO & BENEFITS (ALL DEVICES) ---------------- */}
         <Hero isLowMemoryDevice={isLowMemoryDevice} />
         <BenefitsBar isLowMemoryDevice={isLowMemoryDevice} />
-          
-          {/* Search bar above bestsellers */}
-         {/* Search bar above bestsellers */}
-<div className="relative z-50 isolate">
-  <ProductSearchBar />
-</div>
 
+        <div className="relative z-50 isolate">
+          <ProductSearchBar />
+        </div>
 
-        {/* ---------------- COLLECTION SECTIONS ---------------- */}
-        <HomeSection
-          title="Bestsellers"
-          products={bestsellers}
-          viewAllTag="bestsellers"
-        />
+        {/* HOME SECTIONS ONLY ON TRUE HOME */}
+        {selectedTag === "all" && searchQuery === "" && (
+          <>
+            <HomeSection
+              title="Bestsellers"
+              products={bestsellers}
+              viewAllTag="bestsellers"
+            />
 
-        {(!isLowMemoryDevice || isIOS) && (
-  <>
-    <HomeSection
-      title="For Him"
-      products={menProducts}
-      viewAllTag="men"
-    />
+            {(!isLowMemoryDevice || isIOS) && (
+              <>
+                <HomeSection
+                  title="For Him"
+                  products={menProducts}
+                  viewAllTag="men"
+                />
+                <HomeSection
+                  title="For Her"
+                  products={womenProducts}
+                  viewAllTag="women"
+                />
+              </>
+            )}
+          </>
+        )}
 
-    <HomeSection
-      title="For Her"
-      products={womenProducts}
-      viewAllTag="women"
-    />
-
-    {/* <RecommendedSection /> */}
-  </>
-)}
-{/* 
-        <FilterBar
-          selectedTag={selectedTag}
-          onTagChange={setSelectedTag}
-          availableTags={availableTags}
-        /> */}
-
-        {/* ---------------- PRODUCT GRID ---------------- */}
+        {/* PRODUCT GRID */}
         <div id="products-section" className="px-4 pb-8">
+          {/* SEARCH SEPARATOR */}
+          {searchQuery !== "" && (
+            <div className="max-w-7xl mx-auto mb-6 mt-6">
+              <div className="h-px bg-gold/30 w-full" />
+              <p className="text-sm text-gold/70 mt-3">
+                Search results for “{searchQuery}”
+              </p>
+            </div>
+          )}
+
+          {/* TAG TITLE */}
+          {selectedTag !== "all" && (
+            <div className="max-w-7xl mx-auto mb-4">
+              <h2 className="text-2xl font-semibold capitalize">
+                {selectedTag === "bestsellers"
+                  ? "Bestsellers"
+                  : selectedTag === "men"
+                  ? "Men's Collection"
+                  : selectedTag === "women"
+                  ? "Women's Collection"
+                  : selectedTag}
+              </h2>
+              <div className="h-1 w-16 bg-gold mt-2 rounded-full" />
+            </div>
+          )}
+
           <div className="grid grid-cols-2 gap-4 max-w-7xl mx-auto">
             {currentItems.map((product, index) => (
               <ProductCard
@@ -174,15 +195,14 @@ const Index = () => {
           )}
         </div>
 
-        {/* ---------------- PRIVATE COLLECTION ---------------- */}
-        {(isIOS || !isLowMemoryDevice) && selectedTag === "all" && (
-  <PrivateCollectionSection
-    selectedTag={privateCollectionTag}
-    onTagChange={setPrivateCollectionTag}
-    availableTags={availableTags}
-  />
-)}
-
+        {/* PRIVATE COLLECTION SECTION */}
+        {selectedTag === "all" && searchQuery === "" && (
+          <PrivateCollectionSection
+            selectedTag={privateCollectionTag}
+            onTagChange={setPrivateCollectionTag}
+            availableTags={availableTags}
+          />
+        )}
 
         <Footer />
         <WhatsAppButton />

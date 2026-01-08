@@ -31,24 +31,23 @@ const MobileMenu = ({
   ];
 
   const handleCategoryClick = (tag: string) => {
-    onOpenChange(false);
+  onOpenChange(false);
 
-    // 🔐 PRIVATE COLLECTION
-    if (tag === "private-collection") {
-      navigate("/#private-collection");
-      return;
-    }
+  if (tag === "private-collection") {
+    navigate("/private-collection");
+    return;
+  }
 
-    // NORMAL CATEGORIES
-    onTagChange?.(tag);
-    navigate(`/?tag=${tag}`);
+  onTagChange?.(tag);
+  navigate(`/?tag=${tag}`);
 
-    setTimeout(() => {
-      document
-        .getElementById("products-section")
-        ?.scrollIntoView({ behavior: "smooth" });
-    }, 200);
-  };
+  setTimeout(() => {
+    document
+      .getElementById("products-section")
+      ?.scrollIntoView({ behavior: "smooth" });
+  }, 200);
+};
+
 
   const buttonClass = (tag: string) =>
     `w-full text-left p-3 rounded-lg transition-all ${

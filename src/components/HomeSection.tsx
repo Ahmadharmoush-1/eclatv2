@@ -13,10 +13,13 @@ const HomeSection = ({ title, products, viewAllTag }: HomeSectionProps) => {
   const navigate = useNavigate();
 
   const handleViewAll = () => {
-    // 1️⃣ navigate with tag
+    if (viewAllTag === "private-collection") {
+      navigate("/private-collection");
+      return;
+    }
+
     navigate(`/?tag=${viewAllTag}`);
 
-    // 2️⃣ wait for render, then scroll
     setTimeout(() => {
       const section = document.getElementById("products-section");
       section?.scrollIntoView({
