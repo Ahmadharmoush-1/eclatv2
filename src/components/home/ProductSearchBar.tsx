@@ -5,9 +5,14 @@ import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
 import Reveal from "@/components/ui/Reveal";
 import products from "@/data/products";
+// import { startsWithSearch } from "@/utils/searchUtils";
 
-const ProductSearchBar = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
+interface ProductSearchBarProps {
+  autoOpen?: boolean;
+}
+
+const ProductSearchBar = ({ autoOpen = false }: ProductSearchBarProps) => {
+  const [isExpanded, setIsExpanded] = useState(autoOpen);
   const [searchQuery, setSearchQuery] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const navigate = useNavigate();
@@ -30,20 +35,29 @@ const ProductSearchBar = () => {
     setIsExpanded(false);
   };
 
-  /* ---------------- SUGGESTIONS ---------------- */
+  /* ---------------- SUGGESTIONS (STARTS WITH) ---------------- */
   const suggestions = useMemo(() => {
-    if (!searchQuery.trim()) return [];
+  const q = searchQuery.trim().toLowerCase();
+  if (!q) return [];
 
-    return products
-      .filter(
-        (p) =>
-          p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          p.description.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-      .slice(0, 6);
-  }, [searchQuery]);
+  // 1️⃣ Names that START with the letter
+  const startsWith = products.filter((p) =>
+    p.name.toLowerCase().startsWith(q)
+  );
 
-  /* ---------------- UX HELPERS ---------------- */
+  // 2️⃣ Names that INCLUDE the letter (optional, after)
+  const includes = products.filter(
+    (p) =>
+      !p.name.toLowerCase().startsWith(q) &&
+      p.name.toLowerCase().includes(q)
+  );
+
+  // 3️⃣ Combine and limit
+  return [...startsWith, ...includes].slice(0, 6);
+}, [searchQuery]);
+
+
+  /* ---------------- UX ---------------- */
   useEffect(() => {
     setShowSuggestions(!!searchQuery.trim());
   }, [searchQuery]);
@@ -56,12 +70,10 @@ const ProductSearchBar = () => {
 
   return (
     <Reveal variant="fade-up">
-      {/* 🔥 z-[9999] ensures it stays above product cards */}
       <div className="relative z-[9999] flex justify-center py-6 md:py-8">
         <div className="w-full max-w-md px-4">
           {isExpanded ? (
             <div className="relative">
-              {/* INPUT */}
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -95,10 +107,8 @@ const ProductSearchBar = () => {
                 </Button>
               </form>
 
-              {/* ✅ SUGGESTIONS (FULLY VISIBLE ON MOBILE) */}
               {showSuggestions && suggestions.length > 0 && (
-                <div className="absolute left-0 right-0 mt-2 z-[999999] isolation isolate bg-card border rounded-lg shadow-xl max-h-[70vh] overflow-y-auto">
-
+                <div className="absolute left-0 right-0 mt-2 z-[999999] bg-card border rounded-lg shadow-xl max-h-[70vh] overflow-y-auto">
                   {suggestions.map((product) => (
                     <button
                       key={product.id}
